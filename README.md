@@ -6,8 +6,13 @@
 
 ## General Info
 This browser based web application to ...
+<<<<<<< HEAD
 * Hello This is Soo.
 * Hi my name is Soo. I'm excited about this project.
+=======
+This is Aamir
+* Hi my name is Andy. I'm excited about this project because we are going to create something now!
+>>>>>>> refs/remotes/origin/main
 	
 ## Technologies
 Technologies used for this project:
