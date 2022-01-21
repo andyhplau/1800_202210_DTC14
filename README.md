@@ -6,6 +6,7 @@
 
 ## General Info
 This browser based web application to ...
+* Hello This is Soo.
 * Hi my name is Soo. I'm excited about this project.
 	
 ## Technologies
