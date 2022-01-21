@@ -6,8 +6,9 @@
 
 ## General Info
 This browser based web application to ...
-This is Aamir
+* This is Aamir
 * Hi my name is Andy. I'm excited about this project because we are going to create something now!
+* This is Aamir again!
 	
 ## Technologies
 Technologies used for this project:
