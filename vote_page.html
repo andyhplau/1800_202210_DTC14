@@ -36,14 +36,24 @@
     <!-- 'contents' start -->
     <!-- Plus: Recieve group title, link to group page after  -->
     <div class="contents">
-        <h1 style="margin-top: 70px; margin-bottom: 30px;"> <span class="group_name">...</span> Group! </h1>
+        <h1 style="margin-top: 50px; margin-bottom: 20px;"> <span class="group_name">...</span> Group! </h1>
 
-        <h1 style="margin-bottom: 80px;"> Suggest an loaction for next event</h1>
+        <h1 style="margin-bottom: 30px;"> Please select Preference</h1>
+    </div>
 
-        <div id="suggested_input">
-            <input type="text" id="suggested_location" placeholder="   Type a location!">
-            <button type="button" class="btn btn-primary" id="suggest_btn"> Submit </button>
-        </div>
+    <div class="list-group list-group-checkable" id="voting_list">
+        <input class="list-group-item-check" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios1" value="" checked>
+        <label class="list-group-item py-3" for="listGroupCheckableRadios1">
+          Deep Cove
+          <!-- <span class="d-block small opacity-50">With support text underneath to add more detail</span> -->
+        </label>
+      
+        <input class="list-group-item-check" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios2" value="">
+        <label class="list-group-item py-3" for="listGroupCheckableRadios2">
+          Lynn Valley
+          <!-- <span class="d-block small opacity-50">Some other text goes here</span> -->
+        </label>
+
 
     </div>
 
