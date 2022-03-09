@@ -1,27 +1,6 @@
-*{
-
-}
-
-/* Starting 'suggestion' page */
 .contents {
     text-align: center;
 
-}
-
-button{
-    width: 100px;
-    height: 50px;
-    background-color: lightcyan;
-    border-radius: 10px;
-    border: 1px solid black;
-}
-
-#suggested_location{
-    height: 40px;
-}
-
-#suggested_input{
-    margin-bottom: 140px;
 }
 
 .bi {
