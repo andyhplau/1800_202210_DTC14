@@ -34,19 +34,20 @@
         <h1 style="margin-top: 70px; margin-bottom: 30px;"> <span class="group_name">Are you a...</h1>
 
         <div id="roll_buttons">
-            <button type="button" class="btn btn-primary" id="tourist_btn"> Tourist </button>
+            <button type="button" class="btn btn-primary" id="tourist_btn" value="Tourist"> Tourist </button>
             <h3 style="margin-top: 10px; margin-bottom: 10px;">or</h3>
-            <button type="button" class="btn btn-primary" id="local_btn"> Local </button>
+            <button type="button" class="btn btn-primary" id="local_btn" value="Local"> Local </button>
+        </div>
             <script text="text/javascript">
                 document.getElementById("tourist_btn").onclick = function () {
                     location.href = "interest.html"
                 }
-                document.getElementById("tourist_btn").onclick = function () {
+                document.getElementById("local_btn").onclick = function () {
                     location.href = "interest.html"
                 }
 
             </script>
-        </div>
+        
 
     </div>
     <div class="container">
