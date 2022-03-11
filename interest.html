@@ -26,7 +26,7 @@
 
     <!-- Other libraries and styles -->
     <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
-    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/interest.css">
 
 </head>
 
@@ -38,47 +38,45 @@
 
     <!-- the body of our page -->
     <div id="interest_selection">
-        <h3>Please select 3 types of activities that interest you the most.</h3>
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle m-2" type="button" id="dropdownMenuButton1"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                Activity type
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">Winter Sports</a></li>
-                <li><a class="dropdown-item" href="#">Summer Sports</a></li>
-                <li><a class="dropdown-item" href="#">Dinning</a></li>
-                <li><a class="dropdown-item" href="#">Sightseeing</a></li>
-                <li><a class="dropdown-item" href="#">Museum</a></li>
-                <li><a class="dropdown-item" href="#">Shopping</a></li>
-            </ul>
-            <br>
-            <button class="btn btn-secondary dropdown-toggle m-2" type="button" id="dropdownMenuButton1"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                Activity type
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                <li><a class="dropdown-item" href="#">Winter Sports</a></li>
-                <li><a class="dropdown-item" href="#">Summer Sports</a></li>
-                <li><a class="dropdown-item" href="#">Dinning</a></li>
-                <li><a class="dropdown-item" href="#">Sightseeing</a></li>
-                <li><a class="dropdown-item" href="#">Museum</a></li>
-                <li><a class="dropdown-item" href="#">Shopping</a></li>
-            </ul>
-            <br>
-            <button class="btn btn-secondary dropdown-toggle m-2" type="button" id="dropdownMenuButton1"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                Activity type
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
-                <li><a class="dropdown-item" href="#">Winter Sports</a></li>
-                <li><a class="dropdown-item" href="#">Summer Sports</a></li>
-                <li><a class="dropdown-item" href="#">Dinning</a></li>
-                <li><a class="dropdown-item" href="#">Sightseeing</a></li>
-                <li><a class="dropdown-item" href="#">Museum</a></li>
-                <li><a class="dropdown-item" href="#">Shopping</a></li>
-            </ul>
-        </div>
+        <p class="h3 my-5">Please select 3 types of activities that interest you the most.</p>
+
+        <!-- First interest -->
+        <select class="form-select form-select-lg my-3" id="interest_1">
+            <option selected>Activity type</option>
+            <option value="winter_sports">Winter Sports</option>
+            <option value="summer_sports">Summer Sports</option>
+            <option value="dinning">Dinning</option>
+            <option value="sightseeing">Sightseeing</option>
+            <option value="museum">Museum</option>
+            <option value="shopping">Shopping</option>
+        </select>
+
+        <!-- Second interest -->
+        <select class="form-select form-select-lg my-3" id="interest_2">
+            <option selected>Activity type</option>
+            <option value="winter_sports">Winter Sports</option>
+            <option value="summer_sports">Summer Sports</option>
+            <option value="dinning">Dinning</option>
+            <option value="sightseeing">Sightseeing</option>
+            <option value="museum">Museum</option>
+            <option value="shopping">Shopping</option>
+        </select>
+
+        <!-- Third interest -->
+        <select class="form-select form-select-lg my-3" id="interest_3">
+            <option selected>Activity type</option>
+            <option value="winter_sports">Winter Sports</option>
+            <option value="summer_sports">Summer Sports</option>
+            <option value="dinning">Dinning</option>
+            <option value="sightseeing">Sightseeing</option>
+            <option value="museum">Museum</option>
+            <option value="shopping">Shopping</option>
+        </select>
+
+        <!-- Submit -->
+        <button type="button" class="btn btn-lg btn-primary pull-right my-3" onclick="submit_interest()">
+            Submit
+        </button>
     </div>
 
     <!-- footer-->
@@ -90,6 +88,7 @@
     <!-- JavaScript functions -->
     <script src="./scripts/firebaseAPI_team14.js"></script>
     <script src="./scripts/skeleton.js"></script>
+    <script src="./scripts/interest.js"></script>
     <!-- <script src="./scripts/authentication.js"></script> -->
     <!-- <script src="./scripts/script.js"></script> -->
 

@@ -1,0 +1,19 @@
+    /* Starting 'interest' page */
+    *{
+        box-sizing: border-box;
+    }
+
+    #interest_selection{
+        margin: auto;
+        width: 70%;
+        text-align: center;
+        padding: 10%;
+    }
+
+    #roll_buttons{
+        margin-top: 100px;
+    }
+    
+    #group_heading{
+        margin-top: 30px;
+    }

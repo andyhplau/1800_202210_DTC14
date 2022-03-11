@@ -1,3 +1,17 @@
+var firebaseConfig = {
+    apiKey: "AIzaSyAdT6hXZfzGjQi9evxn7_LuHmmHDvsqzt0",
+    authDomain: "comp1800-dtc14.firebaseapp.com",
+    projectId: "comp1800-dtc14",
+    storageBucket: "comp1800-dtc14.appspot.com",
+    messagingSenderId: "119630016788",
+    appId: "1:119630016788:web:94bed3b88eb3d9d8f79201"
+};
+
+// initialize the Firebase app
+// initialize Firestore database if using it
+const app = firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
 function sayHello() {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {

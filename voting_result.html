@@ -22,11 +22,18 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+    </script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
 
     <!-- Other libraries and styles -->
     <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
-    <link rel="stylesheet" href="./styles/suggest.css">
+
+    <style>
+        .contents {
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -36,14 +43,12 @@
 
     <!-- 'contents' start -->
     <div class="contents">
-        <h1 style="margin-top: 70px; margin-bottom: 30px;">Welcome <span class="group_name">...</span>! </h1>
+        <h1 style="margin-top: 70px; margin-bottom: 20px;">Welcome <span class="group_name">...</span>! </h1>
 
-        <h1 style="margin-bottom: 80px;"> Suggest an loaction for next event</h1>
+        <h1 style="margin-bottom: 40px;"> Result of vote </h1>
 
-        <div id="suggested_input">
-            <input type="text" id="suggested_location" placeholder="   Type a location!">
-            <button type="button" class="btn btn-primary" id="suggest_btn" onclick="store_suggestion()"> Submit
-            </button>
+        <div>
+            <canvas id="pieChart"></canvas>
         </div>
 
     </div>
@@ -58,7 +63,7 @@
     <!-- JavaScript functions -->
     <script src="./scripts/firebaseAPI_team14.js"></script>
     <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/suggestion.js"></script>
+    <script src="./scripts/voting_result.js"></script>
     <!-- <script src="./scripts/authentication.js"></script>
     <script src="./scripts/script.js"></script> -->
 

@@ -7,7 +7,25 @@ var uiConfig = {
             // User successfully signed in.
             // Return type determines whether we continue the redirect automatically
             // or whether we leave that to developer to handle.
-            return true;
+            var user = authResult.user
+            if (authResult.additionalUserInfo.isNewUser) {
+                // create "user" collection
+                db.collection("users")
+                    // define a document for using UID as document ID
+                    .doc(user.uid).set({
+                        name: user.displayName,
+                        email: user.email
+                    }).then(function () {
+                        console.log("New user added to firestore")
+                        window.location.assign("interest.html") // Change to main once setup
+                    })
+                    .catch(function (error) {
+                        console.log(error)
+                    })
+            } else {
+                return true
+            }
+            return false
         },
         uiShown: function () {
             // The widget is rendered.
@@ -17,7 +35,7 @@ var uiConfig = {
     },
     // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
     signInFlow: 'popup',
-    signInSuccessUrl: 'main.html',
+    signInSuccessUrl: 'interest.html', // Change to main once setup
     signInOptions: [
         // Leave the lines as is for the providers you want to offer your users.
         //   firebase.auth.GoogleAuthProvider.PROVIDER_ID,
