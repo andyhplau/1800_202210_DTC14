@@ -41,36 +41,47 @@
         <h1 style="margin-bottom: 30px;"> Please select your preference</h1>
     </div>
 
-    <div class="list-group list-group-checkable" id="voting_list">
+    <template id="suggestionListTemplate">
+        
         <input class="list-group-item-check" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios1"
             value="" checked>
         <label class="list-group-item py-3" for="listGroupCheckableRadios1">
+            Placeholder
+        </label>
+
+    </template>
+
+    <div class="list-group list-group-checkable" id="voting_list">
+        <div id="suggestionCardGroup">
+        </div>
+
+
+        <!-- <input class="list-group-item-check" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios1"
+            value="" checked>
+        <label class="list-group-item py-3" for="listGroupCheckableRadios1">
             Deep Cove
-            <!-- <span class="d-block small opacity-50">With support text underneath to add more detail</span> -->
         </label>
 
         <input class="list-group-item-check" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios2"
             value="">
         <label class="list-group-item py-3" for="listGroupCheckableRadios2">
             Lynn Valley
-            <!-- <span class="d-block small opacity-50">Some other text goes here</span> -->
-        </label>
-
+        </label> -->
 
     </div>
 
 
 
-<!-- footer-->
-<nav id="footerPlaceholder"></nav>
+    <!-- footer-->
+    <nav id="footerPlaceholder"></nav>
 
-<!-- bottom navbar -->
-<nav id="bottomnavbarPlaceholder"></nav>
+    <!-- bottom navbar -->
+    <nav id="bottomnavbarPlaceholder"></nav>
 
-<!-- JavaScript functions -->
-<script src="./scripts/firebaseAPI_team14.js"></script>
-<script src="./scripts/skeleton.js"></script>
-<script src="./scripts/vote.js"></script>
+    <!-- JavaScript functions -->
+    <script src="./scripts/firebaseAPI_team14.js"></script>
+    <script src="./scripts/skeleton.js"></script>
+    <script src="./scripts/vote.js"></script>
 
 </body>
 

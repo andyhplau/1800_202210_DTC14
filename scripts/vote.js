@@ -24,3 +24,27 @@ db.collection("Group").where("id", "==", group_id)
     .catch((error) => {
         console.log("Error getting documents: ", error);
     });
+
+
+    function populateCardsDynamically() {
+        let suggestionListTemplate = document.getElementById("suggestionListTemplate");
+        let suggestionCardGroup = document.getElementById("suggestionCardGroup");
+        
+        db.collection("Suggestions").get()
+            .then(allSuggestions => {
+                allSuggestions.forEach(doc => {
+                    var suggestionName = doc.data().suggestion; //gets the suggestion field
+                    let testSuggestionCard = suggestionListTemplate.content.cloneNode(true);
+                    testSuggestionCard.querySelector('.list-group-item').innerHTML = suggestionName;
+
+                    // testSuggestionCard.querySelector('.list-group-item-check').setAttribute = ('id', `listGroupCheckableRadios${suggestionName}`);
+                    
+                    // testSuggestionCard.querySelector('.list-group-item').setAttribute = ('for', `listGroupCheckableRadios${suggestionName}`);
+
+                    suggestionCardGroup.appendChild(testSuggestionCard);
+                })
+    
+            })
+    }
+    populateCardsDynamically();
+    
