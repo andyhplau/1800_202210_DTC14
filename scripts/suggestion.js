@@ -40,10 +40,11 @@ function store_suggestion() {
                         code: group_id,
                         userID: userID,
                         suggestion: suggestion,
+                        number: 0,
                         timestamp: firebase.firestore.FieldValue.serverTimestamp()
                     }).then(() => {
                         alert("Thank you for your suggest")
-                        window.location.href = "vote_page.html"; //need to change page to main group_page
+                        window.location.href = "group.html";
                     })
                 })
 
