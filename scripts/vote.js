@@ -76,7 +76,7 @@ function updateVoteResult(src) {
 
     // }).then(() => {
     //     alert("Thank you for your suggest")
-    //     window.location.href = "group.html";
+    //     window.location.href = "voting_result.html";
 }
 
 // function update_vote_result(src) {
@@ -114,7 +114,7 @@ function updateVoteResult(src) {
 
 //                     // }).then(() => {
 //                     //     alert("Thank you for your suggest")
-//                     //     window.location.href = "group.html";
+//                     //     window.location.href = "voting_result.html";
 //                 })
 
 

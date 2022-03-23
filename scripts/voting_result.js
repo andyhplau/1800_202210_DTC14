@@ -68,3 +68,7 @@ function getVoteData() {
 }
 
 getVoteData();
+
+function goBack() {
+    window.location.href = "group.html";
+}
