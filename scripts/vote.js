@@ -47,7 +47,7 @@ function populateCardsDynamically() {
                 // suggestionCardGroup.appendChild(testSuggestionCard);
 
                 $('#suggestionCardGroup').append(`<input class="list-group-item-check" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios${i}"
-                value="${suggestionName}" checked onchange="update_vote_result(this);"> <label class="list-group-item py-3" for="listGroupCheckableRadios${i}"> ${suggestionName} </label>`);
+                value="${suggestionName}" onchange="updateVoteResult(this);"> <label class="list-group-item py-3" for="listGroupCheckableRadios${i}"> ${suggestionName} </label>`);
                 i++;
 
             })
@@ -56,44 +56,71 @@ function populateCardsDynamically() {
 }
 populateCardsDynamically();
 
-function update_vote_result(src) {
+function updateVoteResult(src) {
     let selection = src.value;
-    let new_number = null;
-    let suggestion_id = null;
+    let newNumber = null;
 
-    firebase.auth().onAuthStateChanged(user => {
-            if (user) {
-                var currentUser = db.collection("users").doc(user.uid);
-                var userID = user.uid;
+    db.collection("Suggestions").where("suggestion", "==", selection)
+        .get()
+        .then(querySuggestion => {
+            var suggestionGroup = querySuggestion.docs[0].data();
+            var currentNumber = suggestionGroup.number;
+            newNumber = currentNumber + 1;
+        })
+        .then(function (querySuggestion) {
+            querySuggestion.update({
+                number: newNumber
+            })
+        })
 
-                //get the document for current user.
-                currentUser.get()
-                    .then(userDoc => {
-                        var userEmail = userDoc.data().email;
-                        db.collection("Suggestions").where("suggestion", "==", selection)
-                            .get()
-                            .then(result => {
-                                selected_suggestion = result.docs[0].data();
-                                current_number = selected_suggestion.number;
-                                new_number = current_number + 1;
-                                console.log(new_number)
-                                console.log(selected_suggestion)
-                            }).then(set_new_result => {
-                                set_new_result.ref.update({
-                                    number: new_number
-                                })
-                            })
-                            
-                    // }).then(() => {
-                    //     alert("Thank you for your suggest")
-                    //     window.location.href = "group.html";
-                    })
-        
 
-    }
-    else {
-        // No user is signed in.
-        console.log("no user signed in")
-    }
-});
+    // }).then(() => {
+    //     alert("Thank you for your suggest")
+    //     window.location.href = "group.html";
 }
+
+// function update_vote_result(src) {
+//     let selection = src.value;
+//     let new_number = null;
+
+//     firebase.auth().onAuthStateChanged(user => {
+//         if (user) {
+//             var currentUser = db.collection("users").doc(user.uid);
+//             var userID = user.uid;
+
+
+//             //get the document for current user.
+//             currentUser.get()
+//                 .then(userDoc => {
+//                     var userEmail = userDoc.data().email;
+//                     db.collection("Suggestions").where("suggestion", "==", selection)
+//                         .get()
+//                         .then(result => {
+//                             selected_suggestion = result.docs[0].data();
+//                             current_number = selected_suggestion.number;
+//                             new_number = current_number + 1;
+//                             console.log(new_number)
+//                             console.log(result)
+//                                 // }).then(set_new_result => {
+//                                 //     set_new_result.ref.update({
+//                                 //         number: new_number
+//                                 //     })
+//                                 .then(function (result) {
+//                                     result.doc().update({
+//                                         number: new_number
+//                                     })
+//                                 })
+//                         })
+
+//                     // }).then(() => {
+//                     //     alert("Thank you for your suggest")
+//                     //     window.location.href = "group.html";
+//                 })
+
+
+//         } else {
+//             // No user is signed in.
+//             console.log("no user signed in")
+//         }
+//     });
+// }
