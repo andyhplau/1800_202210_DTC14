@@ -4,6 +4,10 @@ let i = 1;
 
 console.log(group_id)
 
+function readGroupName() {
+    
+}
+
 db.collection("Group").where("id", "==", group_id)
     .get()
     .then(queryGroup => {
@@ -78,6 +82,8 @@ function updateVoteResult(src) {
     //     alert("Thank you for your suggest")
     //     window.location.href = "voting_result.html";
 }
+
+
 
 // function update_vote_result(src) {
 //     let selection = src.value;

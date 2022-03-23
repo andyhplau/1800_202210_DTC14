@@ -1,14 +1,4 @@
-function get_role() {
-
-    if(document.getElementById("tourist_btn").onclick){
-        let role = document.getElementById("tourist_btn").value
-        console.log(role)
-    }
-
-    if(document.getElementById("local_btn").onclick){
-        let role = document.getElementById("local_btn").value
-        console.log(role)
-    }
+function get_role(role) {
     firebase.auth().onAuthStateChanged(user => {
         currentUser = db.collection("users").doc(user.uid)
 
@@ -18,7 +8,13 @@ function get_role() {
             })
             .then(() => {
                 console.log("Role Submittted")
-                window.location.assign("interest.html") // Change to interests page once its done
+                // window.location.assign("interest.html") // Change to interests page once its done
             })
     })
 }
+
+$('.role_btn').click(function takeRole(){
+    let role = $(this).val();
+    console.log(role)
+    get_role(role)
+})
