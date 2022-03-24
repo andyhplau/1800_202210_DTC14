@@ -19,7 +19,7 @@ function submit_interest() {
             })
             .then(() => {
                 console.log("Interest submitted!")
-                window.location.assign("vote_page.html") // Change to group selection page once its done
+                window.location.assign("matched.html")
             })
     })
 }
