@@ -56,19 +56,13 @@
                 <!-- Gender -->
                 <div class="form-group my-3">
                     <label>Gender</label>
-                    <br>
-                    <input type="radio" name="genderInput" id="maleInput" class="btn-check" autocomplete="off"
-                        value="male">
-                    <label for="maleInput" class="btn btn-outline-primary m-1">Male</label>
-
-                    <input type="radio" name="genderInput" id="femaleInput" class="btn-check" value="female">
-                    <label for="femaleInput" class="btn btn-outline-primary m-1">Female</label>
-
-                    <input type="radio" name="genderInput" id="transInput" class="btn-check" value="transgender">
-                    <label for="transInput" class="btn btn-outline-primary m-1">Transgender</label>
-
-                    <input type="radio" name="genderInput" id="notToSayInput" class="btn-check" value="not_to_say">
-                    <label for="notToSayInput" class="btn btn-outline-primary m-1">Prefer not to say</label>
+                    <select id="genderInput" class="form-select">
+                        <option>Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="transgender">Transgender</option>
+                        <option value="prefer_not_to_say">Prefer not to say</option>
+                    </select>
                 </div>
 
                 <!-- E-mail -->
