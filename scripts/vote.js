@@ -1,36 +1,51 @@
 //need to modify code of getting group_ID
 let group_id = 'grp001';
 let i = 1;
+let currentUser;
+let userID;
 
 console.log(group_id)
 
+//only works when user is logged in
+firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+        currentUser = db.collection("users").doc(user.uid); //global
+        console.log(currentUser);
+        userID = user.uid;
+
+        readGroupName();
+        populateVotingList();
+    } else {
+        // No user is signed in.
+        console.log("No user is signed in");
+        window.location.href = "login.html";
+    }
+});
+
 function readGroupName() {
-    
+    db.collection("Group").where("id", "==", group_id)
+        .get()
+        .then(queryGroup => {
+            //see how many results you have got from the query
+            size = queryGroup.size;
+            // get the documents of query
+            Group = queryGroup.docs;
+
+            // We want to have one document per group
+            if (size == 1) {
+                var thisGroup = Group[0].data();
+                $(".group_name").html(thisGroup.name);
+
+            } else {
+                console.log("Query has more than one data")
+            }
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
 }
 
-db.collection("Group").where("id", "==", group_id)
-    .get()
-    .then(queryGroup => {
-        //see how many results you have got from the query
-        size = queryGroup.size;
-        // get the documents of query
-        Group = queryGroup.docs;
-
-        // We want to have one document per hike, so if the the result of 
-        //the query is more than one, we can check it right now and clean the DB if needed.
-        if (size == 1) {
-            var thisGroup = Group[0].data();
-            $(".group_name").html(thisGroup.name);
-
-        } else {
-            console.log("Query has more than one data")
-        }
-    })
-    .catch((error) => {
-        console.log("Error getting documents: ", error);
-    });
-
-function populateCardsDynamically() {
+function populateVotingList() {
     // let suggestionListTemplate = document.getElementById("suggestionListTemplate");
     // let suggestionCardGroup = document.getElementById("suggestionCardGroup");
 
@@ -58,75 +73,31 @@ function populateCardsDynamically() {
 
         })
 }
-populateCardsDynamically();
 
 function updateVoteResult(src) {
     let selection = src.value;
     let newNumber = null;
+    let suggestionGroup
 
     db.collection("Suggestions").where("suggestion", "==", selection)
         .get()
         .then(querySuggestion => {
-            var suggestionGroup = querySuggestion.docs[0].data();
-            var currentNumber = suggestionGroup.number;
+            console.log('inside function')
+            suggestionGroup = querySuggestion.docs[0];
+            var currentNumber = suggestionGroup.data().number;
+            console.log('current number:', currentNumber)
             newNumber = currentNumber + 1;
-        })
-        .then(function (querySuggestion) {
-            querySuggestion.update({
+            console.log('new number:', newNumber)
+
+            suggestionGroup.ref.update({
                 number: newNumber
+            }).then(() => {
+                console.log(suggestionGroup.data().number)
+                // alert("Submission Successful");
+                // window.location.href = "voting_result.html";
             })
         })
-
-
-    // }).then(() => {
-    //     alert("Thank you for your suggest")
-    //     window.location.href = "voting_result.html";
+    console.log(suggestionGroup.data().number)
+    // alert("Submission Successful");
+    // window.location.href = "voting_result.html";
 }
-
-
-
-// function update_vote_result(src) {
-//     let selection = src.value;
-//     let new_number = null;
-
-//     firebase.auth().onAuthStateChanged(user => {
-//         if (user) {
-//             var currentUser = db.collection("users").doc(user.uid);
-//             var userID = user.uid;
-
-
-//             //get the document for current user.
-//             currentUser.get()
-//                 .then(userDoc => {
-//                     var userEmail = userDoc.data().email;
-//                     db.collection("Suggestions").where("suggestion", "==", selection)
-//                         .get()
-//                         .then(result => {
-//                             selected_suggestion = result.docs[0].data();
-//                             current_number = selected_suggestion.number;
-//                             new_number = current_number + 1;
-//                             console.log(new_number)
-//                             console.log(result)
-//                                 // }).then(set_new_result => {
-//                                 //     set_new_result.ref.update({
-//                                 //         number: new_number
-//                                 //     })
-//                                 .then(function (result) {
-//                                     result.doc().update({
-//                                         number: new_number
-//                                     })
-//                                 })
-//                         })
-
-//                     // }).then(() => {
-//                     //     alert("Thank you for your suggest")
-//                     //     window.location.href = "voting_result.html";
-//                 })
-
-
-//         } else {
-//             // No user is signed in.
-//             console.log("no user signed in")
-//         }
-//     });
-// }
