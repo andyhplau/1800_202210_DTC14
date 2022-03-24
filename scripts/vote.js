@@ -77,12 +77,10 @@ function populateVotingList() {
 function updateVoteResult(src) {
     let selection = src.value;
     let newNumber = null;
-    let suggestionGroup
 
     db.collection("Suggestions").where("suggestion", "==", selection)
         .get()
         .then(querySuggestion => {
-            console.log('inside function')
             suggestionGroup = querySuggestion.docs[0];
             var currentNumber = suggestionGroup.data().number;
             console.log('current number:', currentNumber)
@@ -92,12 +90,11 @@ function updateVoteResult(src) {
             suggestionGroup.ref.update({
                 number: newNumber
             }).then(() => {
-                console.log(suggestionGroup.data().number)
-                // alert("Submission Successful");
-                // window.location.href = "voting_result.html";
+                setTimeout(() => {
+                    console.log("inside timeout");
+                }, 2000);
+                alert("Submission Successful");
+                window.location.assign("voting_result.html")
             })
         })
-    console.log(suggestionGroup.data().number)
-    // alert("Submission Successful");
-    // window.location.href = "voting_result.html";
 }
