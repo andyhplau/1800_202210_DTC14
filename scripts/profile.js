@@ -28,13 +28,13 @@ function populateInfo() {
                     if (userEmail != null) {
                         document.getElementById("emailInput").value = userEmail;
                     }
-                    if (userCountry != null){
+                    if (userCountry != null) {
                         document.getElementById("residenceInput").value = userCountry;
                     }
-                    if (userLanguageCode != null){
+                    if (userLanguageCode != null) {
                         document.getElementById("languageInput").value = userLanguageCode;
                     }
-                    if (userProfilePictureURL != null){
+                    if (userProfilePictureURL != null) {
                         $("#profilePicture").attr("src", userProfilePictureURL)
                     }
                 })
@@ -99,11 +99,11 @@ function upload_profile_picture() {
                         console.log('profile picture URL: ', pictureURL);
                         alert("Picture uploaded!")
                         db.collection("users").doc(user.uid).update({
-                            profile_picture_URL: pictureURL
-                        })
-                        .then(()=>{
-                            $("#profilePicture").attr("src", pictureURL)
-                        })
+                                profile_picture_URL: pictureURL
+                            })
+                            .then(() => {
+                                $("#profilePicture").attr("src", pictureURL)
+                            })
                     })
                 })
             })
