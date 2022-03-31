@@ -39,23 +39,15 @@
 
     <!-- the body of the page -->
     <div class="container-fluid justify-content-center g-lg-5 my-5">
-        <p class="h1" style="text-align: center;">Dinning Group Chatroom</p>
+        <p class="h1" style="text-align: center;"><span id="groupName"></span> Chatroom</p>
 
-        <div class="toast show my-3">
-            <div class="toast-header">
-                <strong class="me-auto">Andy Lau</strong>
-                <small>10/03/2021 18:07:24</small>
-            </div>
-            <div class="toast-body">
-                <p>I heard Poutine is very famous in Canada. Anyone has some recommendations in Vancouver?</p>
-            </div>
-        </div>
+        <div id="chatMessageBox"></div>
 
         <div class="my-5">
             Message to send:
-            <textarea class="form-control" id="chat_message" rows="10"></textarea>
+            <textarea class="form-control" id="chat_message" rows="6"></textarea>
         </div>
-        <button class="btn btn-primary" type="submit" id="send_chat" onclick="storeChat()">Send</button>
+        <button class="btn btn-primary" type="submit" id="send_chat">Send</button>
     </div>
     <!-- footer-->
     <nav id="footerPlaceholder"></nav>
