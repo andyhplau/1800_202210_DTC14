@@ -1,9 +1,14 @@
-//todo: need to modify code of getting group_ID
-let group_id = 'grp001';
+let groupID;
 
-console.log(group_id)
+function getGroupID() {
+    // create a URL object
+    let params = new URL(window.location.href);
+    groupID = params.searchParams.get("group_id");
 
-db.collection("Group").where("id", "==", group_id)
+}
+getGroupID()
+
+db.collection("Group").where("id", "==", groupID)
     .get()
     .then(queryGroup => {
         //see how many results you have got from the query
@@ -11,7 +16,6 @@ db.collection("Group").where("id", "==", group_id)
         // get the documents of query
         Group = queryGroup.docs;
 
-        // We want to have one document per hike, so if the the result of 
         //the query is more than one, we can check it right now and clean the DB if needed.
         if (size == 1) {
             var thisGroup = Group[0].data();
@@ -37,14 +41,14 @@ function store_suggestion() {
                 .then(userDoc => {
                     var userEmail = userDoc.data().email;
                     db.collection("Suggestions").add({
-                        code: group_id,
+                        code: groupID,
                         userID: userID,
                         suggestion: suggestion,
                         number: 0,
                         timestamp: firebase.firestore.FieldValue.serverTimestamp()
                     }).then(() => {
                         alert("Thank you for your suggest")
-                        window.location.href = "group.html";
+                        window.location.href = "group.html?group_id=" + groupID;
                     })
                 })
 
@@ -53,16 +57,5 @@ function store_suggestion() {
             console.log("no user signed in")
         }
     });
-
-    // firebase.auth().onAuthStateChanged(add_suggestion => {
-    //     db.collection("Suggestions").add({
-    //         code: group_id,
-    //         suggestion: suggestion,
-    //         timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    //     }).then(() => {
-    //         alert("Thank you for your suggest")
-    //         window.location.href = "vote_page.html"; //new line added
-    //     })
-    // })
 
 }

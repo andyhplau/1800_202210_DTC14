@@ -1,16 +1,22 @@
-//need to modify code of getting group_ID
-let group_id = 'grp001';
+let groupID;
 let i = 1;
-let currentUser;
+let currentUserData;
 let userID;
 
-console.log(group_id)
+function getGroupID() {
+    // create a URL object
+    let params = new URL(window.location.href);
+    groupID = params.searchParams.get("group_id");
+
+}
+getGroupID()
+console.log(groupID)
 
 //only works when user is logged in
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
-        currentUser = db.collection("users").doc(user.uid); //global
-        console.log(currentUser);
+        currentUserData = db.collection("users").doc(user.uid); //global
+        console.log(currentUserData);
         userID = user.uid;
 
         readGroupName();
@@ -23,7 +29,7 @@ firebase.auth().onAuthStateChanged(user => {
 });
 
 function readGroupName() {
-    db.collection("Group").where("id", "==", group_id)
+    db.collection("Group").where("id", "==", groupID)
         .get()
         .then(queryGroup => {
             //see how many results you have got from the query
@@ -46,24 +52,12 @@ function readGroupName() {
 }
 
 function populateVotingList() {
-    // let suggestionListTemplate = document.getElementById("suggestionListTemplate");
-    // let suggestionCardGroup = document.getElementById("suggestionCardGroup");
 
-    db.collection("Suggestions").get()
+    db.collection("Suggestions").where("code", "==", groupID)
+        .get()
         .then(allSuggestions => {
             allSuggestions.forEach(doc => {
                 var suggestionName = doc.data().suggestion; //gets the suggestion field
-
-                // let testSuggestionCard = suggestionListTemplate.content.cloneNode(true);
-                // testSuggestionCard.querySelector('.list-group-item').innerHTML = suggestionName;
-
-                // testSuggestionCard.querySelector('#listGroupCheckableRadios1').setAttribute = ('id', `listGroupCheckableRadios${i+1}`);
-
-                // // testSuggestionCard.querySelector('#listGroupCheckableRadios1').setAttribute = ('for', `listGroupCheckableRadios${i+1}`);
-                // // console.log(i)
-                // i++;
-
-                // suggestionCardGroup.appendChild(testSuggestionCard);
 
                 $('#suggestionCardGroup').append(`<input class="list-group-item-check" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios${i}"
                 value="${suggestionName}" onchange="updateVoteResult(this);"> <label class="list-group-item py-3" for="listGroupCheckableRadios${i}"> ${suggestionName} </label>`);
@@ -78,7 +72,7 @@ function updateVoteResult(src) {
     let selection = src.value;
     let newNumber = null;
 
-    db.collection("Suggestions").where("suggestion", "==", selection)
+    db.collection("Suggestions").where("suggestion", "==", selection).where("code", "==", groupID)
         .get()
         .then(querySuggestion => {
             suggestionGroup = querySuggestion.docs[0];
@@ -94,7 +88,7 @@ function updateVoteResult(src) {
                     console.log("inside timeout");
                 }, 2000);
                 alert("Submission Successful");
-                window.location.assign("voting_result.html")
+                window.location.assign("voting_result.html?group_id=" + groupID)
             })
         })
 }

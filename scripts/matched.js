@@ -8,7 +8,7 @@ firebase.auth().onAuthStateChanged(user => {
         userID = user.uid;
         console.log(userID)
 
-        getInterestList(currentUserData);
+        getInterestList();
     } else {
         // No user is signed in.
         console.log("No user is signed in");
@@ -17,7 +17,7 @@ firebase.auth().onAuthStateChanged(user => {
 });
 
 
-function getInterestList(currentUserData) {
+function getInterestList() {
     currentUserData.get()
         .then(userDoc => {
             //get the data fields of the user

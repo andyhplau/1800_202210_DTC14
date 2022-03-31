@@ -1,8 +1,14 @@
-//need to modify code of getting group_ID
-let group_id = 'grp001';
-console.log(group_id)
+let groupID;
 
-db.collection("Group").where("id", "==", group_id)
+function getGroupID() {
+    // create a URL object
+    let params = new URL(window.location.href);
+    groupID = params.searchParams.get("group_id");
+
+}
+getGroupID()
+
+db.collection("Group").where("id", "==", groupID)
     .get()
     .then(queryGroup => {
         //see how many results you have got from the query
@@ -10,7 +16,6 @@ db.collection("Group").where("id", "==", group_id)
         // get the documents of query
         Group = queryGroup.docs;
 
-        // We want to have one document per hike, so if the the result of 
         //the query is more than one, we can check it right now and clean the DB if needed.
         if (size == 1) {
             var thisGroup = Group[0].data();
@@ -48,16 +53,13 @@ var suggestionList = [];
 var suggestionResult = [];
 // get vote data and store in list
 function getVoteData() {
-    // var suggestionList = [];
-    // var suggestionResult = [];
 
-    db.collection("Suggestions").get()
+    db.collection("Suggestions").where("code", "==", groupID)
+        .get()
         .then(allSuggestions => {
             allSuggestions.forEach(doc => {
                 let suggestionName = doc.data().suggestion;
                 let suggestionNumber = doc.data().number;
-
-                // console.log(suggestionName, suggestionNumber)
 
                 suggestionList.push(suggestionName);
                 suggestionResult.push(suggestionNumber);
@@ -71,5 +73,5 @@ function getVoteData() {
 getVoteData();
 
 function goBack() {
-    window.location.href = "group.html";
+    window.location.href = "group.html?group_id="+ groupID;
 }

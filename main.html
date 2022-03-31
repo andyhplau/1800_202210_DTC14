@@ -26,8 +26,6 @@
 
     <!-- Other libraries and styles -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
-    <!-- <link rel="stylesheet" href="./styles/style.css"> -->
     
 
 </head>
@@ -40,11 +38,10 @@
 
     <!-- the body of the page -->
     <div class="container-fluid align-items-center justify-content-center g-lg-5 my-5" style="text-align: center;">
-        <p class="h1">Welcom back, <span id="role">tourist </span><span id="username">Andy Lau</span></p>
+        <p class="h1" id="title_message"> ... </p>
         <p class="h3 my-5">Groups you have joined:</p>
-        <button type="button" class="btn btn-primary btn-lg btn-block my-3 w-50">Winter Sports Group</button>
-        <br>
-        <button type="button" class="btn btn-primary btn-lg btn-block my-3 w-50">Dinning Group</button>
+        <div id="Group_buttons">
+        </div>
     </div>
 
     <!-- footer-->
@@ -56,8 +53,7 @@
     <!-- JavaScript functions -->
     <script src="./scripts/firebaseAPI_team14.js"></script>
     <script src="./scripts/skeleton.js"></script>
-    <!-- <script src="./scripts/authentication.js"></script> -->
-    <!-- <script src="./scripts/script.js"></script> -->
+    <script src="./scripts/main.js"></script>
 
 </body>
 
