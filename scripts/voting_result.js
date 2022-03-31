@@ -44,11 +44,12 @@ function drawPie(suggestionList, suggestionResult) {
     });
 }
 
-
+var suggestionList = [];
+var suggestionResult = [];
 // get vote data and store in list
 function getVoteData() {
-    var suggestionList = [];
-    var suggestionResult = [];
+    // var suggestionList = [];
+    // var suggestionResult = [];
 
     db.collection("Suggestions").get()
         .then(allSuggestions => {
@@ -61,8 +62,8 @@ function getVoteData() {
                 suggestionList.push(suggestionName);
                 suggestionResult.push(suggestionNumber);
             })
-            // console.log(suggestionList);
-            // console.log(suggestionResult);
+            console.log(suggestionList);
+            console.log(suggestionResult);
             drawPie(suggestionList, suggestionResult);
         })
 }

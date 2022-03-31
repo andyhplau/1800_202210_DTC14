@@ -1,4 +1,4 @@
-//need to modify code of getting group_ID
+//todo: need to modify code of getting group_ID
 let group_id = 'grp001';
 
 console.log(group_id)
