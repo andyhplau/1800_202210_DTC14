@@ -1,10 +1,21 @@
-<nav class="navbar fixed-bottom navbar-light bg-primary">
+<nav class="navbar fixed-bottom navbar-light bg-primary pb-0">
 
+    <!-- go back button -->
+    <button type="button" formaction="#" class="btn btn-primary" id="goBackButton" onclick="go_back()">
+        <i class="bi bi-arrow-left" style="font-size: 1.7rem;"></i>
+    </button>
+
+    <!-- home button -->
+    <button type="button" formaction="../pages/main.html" class="btn btn-primary" id="homeButton" onclick="home_button()">
+        <i class="bi bi-house" style="font-size: 1.7rem;"></i>
+    </button>
+
+    <!-- hamburger menu -->
     <div class="dropup">
         <button type="button" class="btn btn-primary" data-bs-toggle="dropdown">
             <i class="bi bi-list" style="font-size: 1.7rem;"></i>
         </button>
-        <ul class="dropdown-menu" style="font-size: 2rem;">
+        <ul class="dropdown-menu dropdown-menu-end" style="font-size: 2rem;">
             <li><a href="../main.html" class="dropdown-item">Home</a></li>
             <li><a href="../profile.html" class="dropdown-item">Profile</a></li>
             <li><a href="../interest.html" class="dropdown-item">Join more groups</a></li>
@@ -12,15 +23,6 @@
             <li><a href="#" class="dropdown-item" id="logoutButton" onclick="logout()">Logout</a></li>
         </ul>
     </div>
-
-    <button type="button" formaction="../main.html" class="btn btn-primary" id="homebutton" onclick="home_button()">
-        <i class="bi bi-house" style="font-size: 1.7rem;"></i>
-    </button>
-
-    <button type="button" class="btn btn-primary" onclick="profile_button()">
-        <img src="./images/nav-profile-icon.png" class="rounded-circle border border-light border-1.5 mx-auto d-block"
-            id="navProfilePicture" style="width: 1.7rem;">
-    </button>
 
     <!-- JavaScript functions -->
     <script src="../scripts/bottomnav.js"></script>
