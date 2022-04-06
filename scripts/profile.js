@@ -14,6 +14,7 @@ function populateInfo() {
                     var userName = userDoc.data().name;
                     var userGender = userDoc.data().gender;
                     var userEmail = userDoc.data().email;
+                    var userRole = userDoc.data().user_role;
                     var userCountry = userDoc.data().country;
                     var userLanguageCode = userDoc.data().language_code;
                     var userProfilePictureURL = userDoc.data().profile_picture_URL
@@ -27,6 +28,9 @@ function populateInfo() {
                     }
                     if (userEmail != null) {
                         document.getElementById("emailInput").value = userEmail;
+                    }
+                    if (userRole != null) {
+                        document.getElementById("roleInput").value = userRole;
                     }
                     if (userCountry != null) {
                         document.getElementById("residenceInput").value = userCountry;
@@ -56,6 +60,7 @@ function editUserInfo() {
 function saveUserInfo() {
     userName = document.getElementById("nameInput").value;
     userGender = document.getElementById("genderInput").value;
+    userRole = document.getElementById("roleInput").value;
     userCountry = document.getElementById("residenceInput").value;
     userLanguageCode = document.getElementById("languageInput").value;
     userLanguage = $("#languageInput option:selected").text();
@@ -71,6 +76,7 @@ function saveUserInfo() {
             currentUser.update({
                     name: userName,
                     gender: userGender,
+                    user_role: userRole,
                     country: userCountry,
                     language_code: userLanguageCode,
                     language: userLanguage
