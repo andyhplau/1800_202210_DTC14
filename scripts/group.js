@@ -1,4 +1,20 @@
 let groupID;
+let userID;
+
+//only works when user is logged in
+firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+        currentUserData = db.collection("users").doc(user.uid); //global
+        userID = user.uid;
+
+        getGroupID();
+        populateMembers();
+    } else {
+        // No user is signed in.
+        console.log("No user is signed in");
+        window.location.href = "login.html";
+    }
+});
 
 // direct to suggestion.html and pass groupID with URL
 function go_suggest_page() {
@@ -7,7 +23,24 @@ function go_suggest_page() {
 
 // direct to vote_page.html and pass groupID with URL
 function go_vote_page() {
-    window.location.href = "vote_page.html?group_id=" + groupID;
+    let voting = false;
+
+    db.collection("Group").where("id", "==", groupID)
+        .get()
+        .then(groupDoc => {
+            groupDoc.forEach(doc => {
+                if (doc.data().votedMembers == userID) {
+                    voting = true
+                }
+            })
+        }).then(() => {
+            console.log(voting)
+            if (voting == true) {
+                alert("You've already voted.");
+            } else {
+                window.location.href = "vote_page.html?group_id=" + groupID;
+            }
+        })
 }
 
 // direct to chat.html and pass groupID with URL
@@ -64,12 +97,3 @@ function populateMembers() {
             })
         })
 }
-
-// call the functions inside
-function setup() {
-    getGroupID();
-    populateMembers();
-}
-
-// call the setup function when page is ready
-$(document).ready(setup);

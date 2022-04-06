@@ -80,10 +80,12 @@ function updateVoteResult(src) {
         .get()
         .then(queryGroup => {
             let Group = queryGroup.docs;
+
+            Group[0].ref.update({
+                votedMembers: firebase.firestore.FieldValue.arrayUnion(userID)
+            })
+
             let thisGroupSuggestion = Group[0].ref.collection("suggestions")
-
-
-
             thisGroupSuggestion.where("suggestion", "==", selection)
                 .get()
                 .then(querySuggestion => {
@@ -94,14 +96,14 @@ function updateVoteResult(src) {
                     console.log('new number:', newNumber)
 
                     suggestionGroup.ref.update({
-                        number: newNumber
-                    }).then(() => {
-                        setTimeout(() => {
-                            console.log("inside timeout");
-                        }, 2000);
-                        alert("Submission Successful");
-                        window.location.assign("voting_result.html?group_id=" + groupID)
-                    })
+                            number: newNumber
+                        }).then(() => {
+                            setTimeout(() => {
+                                console.log("inside timeout");
+                            }, 2000);
+                            alert("Submission Successful");
+                            window.location.assign("voting_result.html?group_id=" + groupID)
+                        })
                 })
         })
 }
