@@ -1,12 +1,19 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+
+    <!-- display the app logo, and direct to main.html when pressed -->
     <div class="container-fluid">
         <a class="navbar-brand" href="main.html">
-            <img src="./images/logo_no_background.png" alt="" width="50" height="50">
+            <img src="./images/logo_no_background.png" style="width: 3rem;">
         </a>
 
-        <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+        <!-- display user profile picture -->
+        <button type="button" class="btn btn-primary" onclick="profile_button()">
+            <img src="./images/nav-profile-icon.png"
+                class="rounded-circle border border-light border-1.5 mx-auto d-block" id="navProfilePicture"
+                style="width: 2.5rem;">
+        </button>
     </div>
+
+    <!-- JavaScript functions -->
+    <script src="../scripts/topnav.js"></script>
 </nav>
