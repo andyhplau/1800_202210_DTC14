@@ -102,7 +102,7 @@ function updateVoteResult(src) {
                                 console.log("inside timeout");
                             }, 2000);
                             alert("Submission Successful");
-                            window.location.assign("voting_result.html?group_id=" + groupID)
+                            window.location.assign("group.html?group_id=" + groupID)
                         })
                 })
         })
