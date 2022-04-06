@@ -39,34 +39,46 @@
 
     <!-- the body of the page -->
     <div class="container-fluid g-lg-5 my-5">
-        <p class="h1 text-center">Welcom to <span id="groupName">...</span></p>
+        <p class="h1 text-center">Welcom to the</p>
+        <p class="h1 text-center" id="groupName"></p>
 
         <div class="container">
-            <div class="row justify-content-between">
-                <div class="col m-3">
-                    <!-- the box for local users -->
-                    <div class="border border-primary border-2 my-4">
-                        <p class="h3 text-center">Locals</p>
-                        <ul class="m2" style="list-style: none;" id="localUsers"></ul>
-                    </div>
-
-                    <!-- the box for tourist users -->
-                    <div class="border border-primary border-2 my-4">
-                        <p class="h3 text-center">Tourists</p>
-                        <ul class="m2" style="list-style: none;" id="touristUsers"></ul>
-                    </div>
+            <!-- <div class="row justify-content-between"> -->
+            <div class="m-3">
+                <!-- the box for local users -->
+                <div class="border border-primary border-2 my-4">
+                    <p class="h3 text-center">Locals</p>
+                    <div class="m2" style="list-style: none;" id="localUsers"></div>
                 </div>
 
-                <!-- the buttons -->
-                <div class="col m-5 text-center w-50">
-                    <button type="button" class="btn btn-primary btn-lg btn-block my-3 w-50"
-                        onclick="go_suggest_page()">Suggest</button>
-                    <br>
-                    <button type="button" class="btn btn-primary btn-lg btn-block my-3 w-50"
-                        onclick="go_vote_page()">Vote</button>
-                    <br>
-                    <button type="button" class="btn btn-primary btn-lg btn-block my-3 w-50"
-                        onclick="go_chat_page()">Chat</button>
+                <!-- the box for tourist users -->
+                <div class="border border-primary border-2 my-4">
+                    <p class="h3 text-center">Tourists</p>
+                    <div class="m2" style="list-style: none;" id="touristUsers"></div>
+                </div>
+            </div>
+
+            <!-- the buttons -->
+            <!-- <div class="my-3 d-grid col-6 mx-auto"> -->
+            <div class="m-3">
+                <div class="d-flex justify-content-evenly">
+                    <button type="button" class="btn btn-primary btn-lg my-3 me-3 w-50" onclick="go_suggest_page()">
+                        Suggest
+                    </button>
+
+                    <button type="button" class="btn btn-primary btn-lg my-3 ms-3 w-50" onclick="go_vote_page()">
+                        Vote
+                    </button>
+                </div>
+
+                <div class="d-flex justify-content-evenly">
+                    <button type="button" class="btn btn-primary btn-lg my-3 me-3 w-50" onclick="go_chat_page()">
+                        Chat
+                    </button>
+
+                    <button type="button" class="btn btn-primary btn-lg my-3 ms-3 w-50" onclick="go_vote_result_page()">
+                        Results
+                    </button>
                 </div>
             </div>
         </div>
