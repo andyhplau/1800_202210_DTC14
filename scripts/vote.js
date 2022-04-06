@@ -10,13 +10,11 @@ function getGroupID() {
 
 }
 getGroupID()
-console.log(groupID)
 
 //only works when user is logged in
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
         currentUserData = db.collection("users").doc(user.uid); //global
-        console.log(currentUserData);
         userID = user.uid;
 
         readGroupName();
@@ -33,17 +31,17 @@ function readGroupName() {
         .get()
         .then(queryGroup => {
             //see how many results you have got from the query
-            size = queryGroup.size;
+            let size = queryGroup.size;
             // get the documents of query
-            Group = queryGroup.docs;
+            let Group = queryGroup.docs;
 
-            // We want to have one document per group
+            //the query is more than one, we can check it right now and clean the DB if needed.
             if (size == 1) {
-                var thisGroup = Group[0].data();
+                let thisGroup = Group[0].data();
                 $(".group_name").html(thisGroup.name);
 
             } else {
-                console.log("Query has more than one data")
+                console.log("Query has more than one data");
             }
         })
         .catch((error) => {
@@ -51,20 +49,26 @@ function readGroupName() {
         });
 }
 
+
 function populateVotingList() {
-
-    db.collection("Suggestions").where("code", "==", groupID)
+    db.collection("Group").where("id", "==", groupID)
         .get()
-        .then(allSuggestions => {
-            allSuggestions.forEach(doc => {
-                var suggestionName = doc.data().suggestion; //gets the suggestion field
+        .then(queryGroup => {
+            let Group = queryGroup.docs;
+            let thisGroupSuggestion = Group[0].ref.collection("suggestions")
+            thisGroupSuggestion
+                .get()
+                .then(allSuggestions => {
+                    allSuggestions.forEach(doc => {
+                        var suggestionName = doc.data().suggestion; //gets the suggestion field
 
-                $('#suggestionCardGroup').append(`<input class="list-group-item-check" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios${i}"
+                        $('#suggestionCardGroup').append(`<input class="list-group-item-check" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios${i}"
                 value="${suggestionName}" onchange="updateVoteResult(this);"> <label class="list-group-item py-3" for="listGroupCheckableRadios${i}"> ${suggestionName} </label>`);
-                i++;
+                        i++;
 
-            })
+                    })
 
+                })
         })
 }
 
@@ -72,23 +76,32 @@ function updateVoteResult(src) {
     let selection = src.value;
     let newNumber = null;
 
-    db.collection("Suggestions").where("suggestion", "==", selection).where("code", "==", groupID)
+    db.collection("Group").where("id", "==", groupID)
         .get()
-        .then(querySuggestion => {
-            suggestionGroup = querySuggestion.docs[0];
-            var currentNumber = suggestionGroup.data().number;
-            console.log('current number:', currentNumber)
-            newNumber = currentNumber + 1;
-            console.log('new number:', newNumber)
+        .then(queryGroup => {
+            let Group = queryGroup.docs;
+            let thisGroupSuggestion = Group[0].ref.collection("suggestions")
 
-            suggestionGroup.ref.update({
-                number: newNumber
-            }).then(() => {
-                setTimeout(() => {
-                    console.log("inside timeout");
-                }, 2000);
-                alert("Submission Successful");
-                window.location.assign("voting_result.html?group_id=" + groupID)
-            })
+
+
+            thisGroupSuggestion.where("suggestion", "==", selection)
+                .get()
+                .then(querySuggestion => {
+                    suggestionGroup = querySuggestion.docs[0];
+                    var currentNumber = suggestionGroup.data().number;
+                    console.log('current number:', currentNumber)
+                    newNumber = currentNumber + 1;
+                    console.log('new number:', newNumber)
+
+                    suggestionGroup.ref.update({
+                        number: newNumber
+                    }).then(() => {
+                        setTimeout(() => {
+                            console.log("inside timeout");
+                        }, 2000);
+                        alert("Submission Successful");
+                        window.location.assign("voting_result.html?group_id=" + groupID)
+                    })
+                })
         })
 }

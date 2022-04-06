@@ -8,26 +8,44 @@ function getGroupID() {
 }
 getGroupID()
 
-db.collection("Group").where("id", "==", groupID)
-    .get()
-    .then(queryGroup => {
-        //see how many results you have got from the query
-        size = queryGroup.size;
-        // get the documents of query
-        Group = queryGroup.docs;
+//only works when user is logged in
+firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+        currentUserData = db.collection("users").doc(user.uid); //global
+        userID = user.uid;
 
-        //the query is more than one, we can check it right now and clean the DB if needed.
-        if (size == 1) {
-            var thisGroup = Group[0].data();
-            $(".group_name").html(thisGroup.name);
+        readGroupName();
+        getVoteData();
+    } else {
+        // No user is signed in.
+        console.log("No user is signed in");
+        window.location.href = "login.html";
+    }
+});
 
-        } else {
-            console.log("Query has more than one data")
-        }
-    })
-    .catch((error) => {
-        console.log("Error getting documents: ", error);
-    });
+
+function readGroupName() {
+    db.collection("Group").where("id", "==", groupID)
+        .get()
+        .then(queryGroup => {
+            //see how many results you have got from the query
+            let size = queryGroup.size;
+            // get the documents of query
+            let Group = queryGroup.docs;
+
+            //the query is more than one, we can check it right now and clean the DB if needed.
+            if (size == 1) {
+                let thisGroup = Group[0].data();
+                $(".group_name").html(thisGroup.name);
+
+            } else {
+                console.log("Query has more than one data");
+            }
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
+}
 
 
 //pie
@@ -49,29 +67,31 @@ function drawPie(suggestionList, suggestionResult) {
     });
 }
 
+
+
 var suggestionList = [];
 var suggestionResult = [];
 // get vote data and store in list
 function getVoteData() {
 
-    db.collection("Suggestions").where("code", "==", groupID)
+    db.collection("Group").where("id", "==", groupID)
         .get()
-        .then(allSuggestions => {
-            allSuggestions.forEach(doc => {
-                let suggestionName = doc.data().suggestion;
-                let suggestionNumber = doc.data().number;
+        .then(queryGroup => {
+            let Group = queryGroup.docs;
+            let thisGroupSuggestion = Group[0].ref.collection("suggestions")
+            thisGroupSuggestion
+                .get()
+                .then(allSuggestions => {
+                    allSuggestions.forEach(doc => {
+                        let suggestionName = doc.data().suggestion;
+                        let suggestionNumber = doc.data().number;
 
-                suggestionList.push(suggestionName);
-                suggestionResult.push(suggestionNumber);
-            })
-            console.log(suggestionList);
-            console.log(suggestionResult);
-            drawPie(suggestionList, suggestionResult);
+                        suggestionList.push(suggestionName);
+                        suggestionResult.push(suggestionNumber);
+                    })
+                    console.log(suggestionList);
+                    console.log(suggestionResult);
+                    drawPie(suggestionList, suggestionResult);
+                })
         })
-}
-
-getVoteData();
-
-function goBack() {
-    window.location.href = "group.html?group_id="+ groupID;
 }

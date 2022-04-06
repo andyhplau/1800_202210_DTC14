@@ -27,12 +27,12 @@ function getInterestList() {
 
             let interest_list = [interest1, interest2, interest3];
 
-            populateVotingList(interest_list)
+            populateInterestList(interest_list)
         })
 }
 
 
-function populateVotingList(interest_list) {
+function populateInterestList(interest_list) {
     let suggestionListTemplate = document.getElementById("cardTemplete");
     let suggestionCardGroup = document.getElementById("suggestionCardGroup");
 
