@@ -1,18 +1,26 @@
 let groupID;
 
+// direct to suggestion.html and pass groupID with URL
 function go_suggest_page() {
     window.location.href = "suggestion.html?group_id=" + groupID;
 }
 
+// direct to vote_page.html and pass groupID with URL
 function go_vote_page() {
     window.location.href = "vote_page.html?group_id=" + groupID;
 }
 
+// direct to chat.html and pass groupID with URL
 function go_chat_page() {
     window.location.href = "chat.html?group_id=" + groupID;
 }
 
+// direct to voting_result.html and pass groupID with URL
+function go_vote_result_page() {
+    window.location.href = "voting_result.html?group_id=" + groupID;
+}
 
+// get group id from URL
 function getGroupID() {
     // create a URL object
     let params = new URL(window.location.href);
@@ -46,19 +54,21 @@ function populateMembers() {
                         }
                         // place the local users
                         if (userRole == "Local") {
-                            $("#localUsers").append(`<li class="m-3" style="clear: both;"><img class="rounded-circle border border-dark border-1 d-block mx-3" style="width: 1.7rem; float: left;" src=${userProfilePictureURL}>${userName}</li>`)
-                        // place the tourist users
+                            $("#localUsers").append(`<li class="m-3" style="clear: both;"><img class="rounded-circle border border-dark border-1 d-block mx-3" style="width: 1.7rem; float: left;" src=${userProfilePictureURL}>${userName}</li>`);
+                            // place the tourist users
                         } else if (userRole == "Tourist") {
-                            $("#touristUsers").append(`<li class="m-3" style="clear: both;"><img class="rounded-circle border border-dark border-1 d-block mx-3" style="width: 1.7rem; float: left;" src=${userProfilePictureURL}>${userName}</li>`)
+                            $("#touristUsers").append(`<li class="m-3" style="clear: both;"><img class="rounded-circle border border-dark border-1 d-block mx-3" style="width: 1.7rem; float: left;" src=${userProfilePictureURL}>${userName}</li>`);
                         }
                     })
             })
         })
 }
 
+// call the functions inside
 function setup() {
     getGroupID();
     populateMembers();
 }
 
+// call the setup function when page is ready
 $(document).ready(setup);
