@@ -28,6 +28,7 @@ function getGroupID() {
     console.log(groupID)
 }
 
+// populate group members to group.html
 function populateMembers() {
     // go to the correct group using groupID
     db.collection("Group").where("id", "==", groupID)
@@ -54,10 +55,10 @@ function populateMembers() {
                         }
                         // place the local users
                         if (userRole == "Local") {
-                            $("#localUsers").append(`<li class="m-3" style="clear: both;"><img class="rounded-circle border border-dark border-1 d-block mx-3" style="width: 1.7rem; float: left;" src=${userProfilePictureURL}>${userName}</li>`);
+                            $("#localUsers").append(`<div class="m-3 px-5" style="clear: both;"><img class="rounded-circle border border-dark border-1 d-block mx-3" style="width: 1.7rem; float: left;" src=${userProfilePictureURL}>${userName}</div>`);
                             // place the tourist users
                         } else if (userRole == "Tourist") {
-                            $("#touristUsers").append(`<li class="m-3" style="clear: both;"><img class="rounded-circle border border-dark border-1 d-block mx-3" style="width: 1.7rem; float: left;" src=${userProfilePictureURL}>${userName}</li>`);
+                            $("#touristUsers").append(`<div class="m-3 px-5" style="clear: both;"><img class="rounded-circle border border-dark border-1 d-block mx-3" style="width: 1.7rem; float: left;" src=${userProfilePictureURL}>${userName}</div>`);
                         }
                     })
             })
