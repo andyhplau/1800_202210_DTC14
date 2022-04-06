@@ -62,13 +62,15 @@ function populateChats() {
                         var message = chat.data().message;
                         var time = chat.data().timestamp.toDate();
                         // appending the messages to the page
-                        $("#chatMessageBox").append(`<div class="toast show my-3">
-                    <div class="toast-header">
-                        <strong class="me-auto">${userName}</strong>
-                        <small>${time.toLocaleString()}</small>
+                        $("#chatMessageBox").append(`<div class="card my-3">
+                    <div class="card-header text-center">
+                        <strong>${userName}</strong>
                     </div>
-                    <div class="toast-body">
+                    <div class="card-body">
                         <p>${message}</p>
+                    </div>
+                    <div class="card-footer text-muted text-center">
+                        <small>${time.toLocaleString()}</small>
                     </div>
                 </div>`);
                     })
