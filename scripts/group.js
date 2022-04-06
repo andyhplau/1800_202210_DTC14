@@ -29,10 +29,8 @@ function populateMembers() {
             var groupName = groupDoc.docs[0].data().name;
             // pass group name to groupName span
             $("#groupName").html(groupName);
-
             // get the members in the group
             var group = groupDoc.docs[0].data().members;
-
             group.forEach(uid => {
                 // get the user docs
                 var users = db.collection("users").doc(uid)
@@ -42,11 +40,14 @@ function populateMembers() {
                         var userProfilePictureURL = userDoc.data().profile_picture_URL;
                         var userRole = userDoc.data().user_role;
                         console.log(uid, userName, userProfilePictureURL, userRole)
+                        // set default profile picture if URL is null
                         if (userProfilePictureURL == null) {
                             var userProfilePictureURL = "./images/profile-icon.png"
                         }
+                        // place the local users
                         if (userRole == "Local") {
                             $("#localUsers").append(`<li class="m-3" style="clear: both;"><img class="rounded-circle border border-dark border-1 d-block mx-3" style="width: 1.7rem; float: left;" src=${userProfilePictureURL}>${userName}</li>`)
+                        // place the tourist users
                         } else if (userRole == "Tourist") {
                             $("#touristUsers").append(`<li class="m-3" style="clear: both;"><img class="rounded-circle border border-dark border-1 d-block mx-3" style="width: 1.7rem; float: left;" src=${userProfilePictureURL}>${userName}</li>`)
                         }

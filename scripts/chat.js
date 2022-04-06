@@ -16,14 +16,15 @@ function storeChat() {
             // get the document for current user
             currentUser.get()
                 .then(userDoc => {
+                    // get the user name
                     var thisUser = userDoc.data().name;
                     var thisUserID = user.uid;
                     var thisMessage = $("#chat_message").val();
-                    // storing message to firestore
-                    // console.log(thisUser, thisUserID, thisMessage)
+                    // get to the correct group using the groupID
                     db.collection("Group").where("id", "==", groupID)
                         .get()
                         .then(group => {
+                            // add the message data to chats collection inside group document
                             group.docs[0].ref.collection("chats").add({
                                 message: thisMessage,
                                 userName: thisUser,
@@ -31,7 +32,9 @@ function storeChat() {
                                 timestamp: firebase.firestore.FieldValue.serverTimestamp()
                             })
                         }).then(() => {
+                            // clear the message box
                             $("#chat_message").val("");
+                            // populate the messages again
                             setTimeout(populateChats, 500);
                         })
                 })
@@ -43,22 +46,22 @@ function storeChat() {
 }
 
 function populateChats() {
+    // empty the messages
     $("#chatMessageBox").empty()
+    // get to the right group document with the groupID
     db.collection("Group").where("id", "==", groupID)
         .get()
         .then(group => {
+            // get to the chats collection, and sort all chat document by time
             group.docs[0].ref.collection("chats")
-                // .docs[0].collection("chats")
-                // doc(groupID).collection("chats")
                 .orderBy("timestamp")
                 .get()
                 .then(allChats => {
                     allChats.forEach(chat => {
                         var userName = chat.data().userName;
-                        // var userID = chat.data().userID;
                         var message = chat.data().message;
                         var time = chat.data().timestamp.toDate();
-                        // console.log(time.toLocaleString());
+                        // appending the messages to the page
                         $("#chatMessageBox").append(`<div class="toast show my-3">
                     <div class="toast-header">
                         <strong class="me-auto">${userName}</strong>
