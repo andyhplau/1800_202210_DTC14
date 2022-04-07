@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>My BCIT Project</title>
+    <title>Login Page</title>
     <meta name="comp1800 team 14" content="My 1800 App">
 
     <!-- Required meta tags -->
@@ -38,15 +38,17 @@
     <nav id="topnavbarPlaceholder"></nav>
 
     <!-- the body of our page -->
-    <div class="row d-flex justify-content-center g-lg-5 py-5">
-        <img class="m-5" src="./images/logo_no_background.png" alt="" style="width: 500px;">
-        <!-- Login container -->
+    <div class="g-lg-5 py-5">
+        <!-- logo -->
+        <div class="d-flex justify-content-center">
+            <img class="m-5" src="./images/logo_no_background.png" alt="" style="width: 200px;">
+        </div>
+        <!-- login container -->
         <div class="container" style="text-align: center;">
             <h1>Welcome to IMMERSE!</h1>
-            <h1>Please Login</h1>
+            <div id="firebaseui-auth-container"></div>
+            <div id="loader">Loading...</div>
         </div>
-        <div id="firebaseui-auth-container"></div>
-        <div id="loader">Loading...</div>
     </div>
 
     <!-- footer-->
