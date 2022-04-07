@@ -24,12 +24,14 @@ function go_suggest_page() {
 // direct to vote_page.html and pass groupID with URL
 function go_vote_page() {
     let voting = false;
+    console.log(groupID)
+    console.log(userID)
 
     db.collection("Group").where("id", "==", groupID)
         .get()
         .then(groupDoc => {
             groupDoc.forEach(doc => {
-                if (doc.data().votedMembers == userID) {
+                if (doc.data().votedMembers.includes(userID)) {
                     voting = true
                 }
             })

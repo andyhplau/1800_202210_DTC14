@@ -19,11 +19,12 @@
 }
 
 body {
-    background-color: #f0f0dd;
+    background-color: #f5f5e7;
 }
 
 .border-light {
     background-color: #f0f0dd;
+    border-color: #454d66 !important;
 }
 
 .nav-btn{
