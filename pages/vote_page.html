@@ -28,12 +28,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
     <link rel="stylesheet" href="../styles/vote.css">
+    <link rel="stylesheet" href="../styles/style.css">
 </head>
 
 <body>
 
     <!-- top navbar -->
-    <nav id="topnavbarPlaceholder"></nav>
+    <nav id="topnavbarPlaceholder" class="sticky-top"></nav>
 
     <!-- 'contents' start -->
     <div class="contents">
@@ -41,14 +42,6 @@
 
         <h1 style="margin-bottom: 30px;"> Please select your preference</h1>
     </div>
-
-    <!-- <template id="suggestionListTemplate">  
-        <input class="list-group-item-check" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios1"
-            value="" checked>
-        <label class="list-group-item py-3" for="listGroupCheckableRadios1">
-            Placeholder
-        </label>
-    </template> -->
 
     <div class="list-group list-group-checkable" id="voting_list">
         <div id="suggestionCardGroup"> </div>

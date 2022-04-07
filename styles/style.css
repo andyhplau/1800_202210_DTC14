@@ -1,0 +1,42 @@
+.bg-info {
+    background-color: #309975 !important;
+}
+
+.navbar-light .navbar-brand {
+    color: #EFD9CE;
+}
+
+.btn-primary {
+    color: #EFD9CE;
+    background-color: #454d66;
+    border-color: #454d66;
+}
+
+.btn-primary:hover {
+    color: #454d66;
+    background-color: #25283D;
+    border-color: #a675A1;
+}
+
+body {
+    background-color: #f0f0dd;
+}
+
+.border-light {
+    background-color: #f0f0dd;
+}
+
+.nav-btn{
+    color: #EFD9CE !important;
+    background-color: #309975 !important;
+    border-color: #309975 !important;
+}
+.list-group-item {
+    color: #EFD9CE;
+    background-color: #309975;
+    margin-top: 10px;
+}
+
+.list-group-item:hover {
+    color: #454d66;
+}
