@@ -12,7 +12,7 @@ firebase.auth().onAuthStateChanged(user => {
     } else {
         // No user is signed in.
         console.log("No user is signed in");
-        window.location.href = "login.html";
+        window.location.href = "../login.html";
     }
 });
 
@@ -86,7 +86,7 @@ function joining(src) {
                     // console.log("inside timeout");
                 }, 2000);
                 alert("Successfully joined group!");
-                window.location.assign("main.html")
+                window.location.assign("../pages/main.html")
             })
 
         })

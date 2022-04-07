@@ -2,7 +2,7 @@ var currentUser
 
 // direct to main.html
 function home_button() {
-    window.location.href = "../main.html";
+    window.location.href = "../pages/main.html";
 }
 
 // let the user to logout and direct to index.html
@@ -22,6 +22,8 @@ function show_profile() {
 
         // check if user is signed in
         if (user) {
+            $('#loginButton').hide()
+            $('#logoutButton').show()
             // go to the correct user document by referencing to the user uid
             currentUser = db.collection("users").doc(user.uid);
             // get the document for current user
@@ -35,6 +37,8 @@ function show_profile() {
                     }
                 })
         } else {
+            $('#loginButton').show()
+            $('#logoutButton').hide()
             // No user is signed in.
             console.log("No user is signed in");
         }
@@ -43,7 +47,7 @@ function show_profile() {
 
 // direct to profile.html
 function profile_button() {
-    window.location.href = "../profile.html";
+    window.location.href = "../pages/profile.html";
 }
 
 // call the functions inside

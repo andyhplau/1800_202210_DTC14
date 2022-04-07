@@ -22,7 +22,7 @@ firebase.auth().onAuthStateChanged(user => {
     } else {
         // No user is signed in.
         console.log("No user is signed in");
-        window.location.href = "login.html";
+        window.location.href = "../login.html";
     }
 });
 
@@ -102,7 +102,7 @@ function updateVoteResult(src) {
                                 console.log("inside timeout");
                             }, 2000);
                             alert("Submission Successful");
-                            window.location.assign("group.html?group_id=" + groupID)
+                            window.location.assign("../pages/group.html?group_id=" + groupID)
                         })
                 })
         })

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Voting Page</title>
+    <title>Vote Results Page</title>
     <meta name="comp1800 team 14" content="My 1800 App">
 
     <!-- Required meta tags -->
@@ -22,12 +22,19 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+    </script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
 
     <!-- Other libraries and styles -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
-    <link rel="stylesheet" href="./styles/vote.css">
+
+    <style>
+        .contents {
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -37,23 +44,15 @@
 
     <!-- 'contents' start -->
     <div class="contents">
-        <h1 style="margin-top: 50px; margin-bottom: 20px;"> Welcome <span class="group_name">...</span>! </h1>
+        <h1 style="margin-top: 70px; margin-bottom: 20px;">Welcome <span class="group_name">...</span>! </h1>
 
-        <h1 style="margin-bottom: 30px;"> Please select your preference</h1>
+        <h1 style="margin-bottom: 40px;"> Result of vote </h1>
+
+        <div style="margin-bottom: 50px;">
+            <canvas id="pieChart"></canvas>
+        </div>
+
     </div>
-
-    <!-- <template id="suggestionListTemplate">  
-        <input class="list-group-item-check" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios1"
-            value="" checked>
-        <label class="list-group-item py-3" for="listGroupCheckableRadios1">
-            Placeholder
-        </label>
-    </template> -->
-
-    <div class="list-group list-group-checkable" id="voting_list">
-        <div id="suggestionCardGroup"> </div>
-    </div>
-
 
 
     <!-- footer-->
@@ -63,9 +62,11 @@
     <nav id="bottomnavbarPlaceholder"></nav>
 
     <!-- JavaScript functions -->
-    <script src="./scripts/firebaseAPI_team14.js"></script>
-    <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/vote.js"></script>
+    <script src="../scripts/firebaseAPI_team14.js"></script>
+    <script src="../scripts/skeleton.js"></script>
+    <script src="../scripts/voting_result.js"></script>
+    <!-- <script src="./scripts/authentication.js"></script>
+    <script src="./scripts/script.js"></script> -->
 
 </body>
 

@@ -5,7 +5,7 @@ firebase.auth().onAuthStateChanged(user => {
     } else {
         // No user is signed in.
         console.log("No user is signed in");
-        window.location.href = "login.html";
+        window.location.href = "../login.html";
     }
 });
 
@@ -30,7 +30,7 @@ function submit_interest() {
             })
             .then(() => {
                 console.log("Interest submitted!")
-                window.location.assign("matched.html")
+                window.location.assign("../pages/matched.html")
             })
     })
 }

@@ -21,7 +21,7 @@ firebase.auth().onAuthStateChanged(user => {
     } else {
         // No user is signed in.
         console.log("no user signed in")
-        window.location.href = "login.html";
+        window.location.href = "../login.html";
     }
 });
 
@@ -63,6 +63,6 @@ function store_suggestion() {
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
     }).then(() => {
             alert("Thank you for your suggest")
-            window.location.href = "group.html?group_id=" + groupID;
+            window.location.href = "../pages/group.html?group_id=" + groupID;
         })
 }

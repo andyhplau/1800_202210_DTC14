@@ -8,7 +8,7 @@ function get_role(role) {
             })
             .then(() => {
                 console.log("Role Submittted")
-                window.location.assign("interest.html") // Change to interests page once its done
+                window.location.assign("../pages/interest.html")
             })
     })
 }

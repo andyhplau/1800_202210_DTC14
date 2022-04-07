@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Matched Groups Page</title>
+    <title>Group</title>
     <meta name="comp1800 team 14" content="My 1800 App">
 
     <!-- Required meta tags -->
@@ -27,11 +27,7 @@
     <!-- Other libraries and styles -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
-    <style>
-        .card {
-            margin: 10px;
-        }
-    </style>
+    <!-- <link rel="stylesheet" href="./styles/style.css"> -->
 
 </head>
 
@@ -42,22 +38,50 @@
     <nav id="topnavbarPlaceholder"></nav>
 
     <!-- the body of the page -->
-    <template id="cardTemplete">
-        <div class="col-sm-6">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card_group_title"></h4>
-                    <p class="card_text"> ... </p>
-                    <a class="btn btn-primary join_btn" onclick="joining(this)">Join</a>
+    <div class="container-fluid g-lg-5 my-5">
+        <p class="h1 text-center">Welcom to the</p>
+        <p class="h1 text-center" id="groupName"></p>
+
+        <div class="container">
+            <!-- <div class="row justify-content-between"> -->
+            <div class="m-3">
+                <!-- the box for local users -->
+                <div class="border border-primary border-2 my-4">
+                    <p class="h3 text-center">Locals</p>
+                    <div class="m2" style="list-style: none;" id="localUsers"></div>
+                </div>
+
+                <!-- the box for tourist users -->
+                <div class="border border-primary border-2 my-4">
+                    <p class="h3 text-center">Tourists</p>
+                    <div class="m2" style="list-style: none;" id="touristUsers"></div>
+                </div>
+            </div>
+
+            <!-- the buttons -->
+            <!-- <div class="my-3 d-grid col-6 mx-auto"> -->
+            <div class="m-3">
+                <div class="d-flex justify-content-evenly">
+                    <button type="button" class="btn btn-primary btn-lg my-3 me-3 w-50" onclick="go_suggest_page()">
+                        Suggest
+                    </button>
+
+                    <button type="button" class="btn btn-primary btn-lg my-3 ms-3 w-50" onclick="go_vote_page()">
+                        Vote
+                    </button>
+                </div>
+
+                <div class="d-flex justify-content-evenly">
+                    <button type="button" class="btn btn-primary btn-lg my-3 me-3 w-50" onclick="go_chat_page()">
+                        Messages
+                    </button>
+
+                    <button type="button" class="btn btn-primary btn-lg my-3 ms-3 w-50" onclick="go_vote_result_page()">
+                        Results
+                    </button>
                 </div>
             </div>
         </div>
-    </template>
-
-    <div class="contents" style="margin: 30px 20px; text-align: center;">
-        <h1 id="group_heading">Here are suggestions!</h1>
-        <h5>Click 'join' button to join the group!</h5>
-        <div class="row" id="suggestionCardGroup"> </div>
     </div>
 
     <!-- footer-->
@@ -67,9 +91,9 @@
     <nav id="bottomnavbarPlaceholder"></nav>
 
     <!-- JavaScript functions -->
-    <script src="./scripts/firebaseAPI_team14.js"></script>
-    <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/matched.js"></script>
+    <script src="../scripts/firebaseAPI_team14.js"></script>
+    <script src="../scripts/skeleton.js"></script>
+    <script src="../scripts/group.js"></script>
     <!-- <script src="./scripts/authentication.js"></script> -->
     <!-- <script src="./scripts/script.js"></script> -->
 

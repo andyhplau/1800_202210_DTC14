@@ -13,7 +13,7 @@ firebase.auth().onAuthStateChanged(user => {
     } else {
         // No user is signed in.
         console.log("No user is signed in");
-        window.location.href = "login.html";
+        window.location.href = "../login.html";
     }
 });
 
@@ -50,5 +50,5 @@ function populateGroupButtons() {
 function join_group(src) {
     let selectedGroupID = src.value;
 
-    window.location.href = "group.html?group_id=" + selectedGroupID;
+    window.location.href = "../pages/group.html?group_id=" + selectedGroupID;
 }

@@ -12,13 +12,13 @@ firebase.auth().onAuthStateChanged(user => {
     } else {
         // No user is signed in.
         console.log("No user is signed in");
-        window.location.href = "login.html";
+        window.location.href = "../login.html";
     }
 });
 
 // direct to suggestion.html and pass groupID with URL
 function go_suggest_page() {
-    window.location.href = "suggestion.html?group_id=" + groupID;
+    window.location.href = "../pages/suggestion.html?group_id=" + groupID;
 }
 
 // direct to vote_page.html and pass groupID with URL
@@ -38,19 +38,19 @@ function go_vote_page() {
             if (voting == true) {
                 alert("You've already voted.");
             } else {
-                window.location.href = "vote_page.html?group_id=" + groupID;
+                window.location.href = "../pages/vote_page.html?group_id=" + groupID;
             }
         })
 }
 
 // direct to chat.html and pass groupID with URL
 function go_chat_page() {
-    window.location.href = "chat.html?group_id=" + groupID;
+    window.location.href = "../pages/chat.html?group_id=" + groupID;
 }
 
 // direct to voting_result.html and pass groupID with URL
 function go_vote_result_page() {
-    window.location.href = "voting_result.html?group_id=" + groupID;
+    window.location.href = "../pages/voting_result.html?group_id=" + groupID;
 }
 
 // get group id from URL
@@ -84,7 +84,7 @@ function populateMembers() {
                         console.log(uid, userName, userProfilePictureURL, userRole)
                         // set default profile picture if URL is null
                         if (userProfilePictureURL == null) {
-                            var userProfilePictureURL = "./images/profile-icon.png"
+                            var userProfilePictureURL = "../images/profile-icon.png"
                         }
                         // place the local users
                         if (userRole == "Local") {
