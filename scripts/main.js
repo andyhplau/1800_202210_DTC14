@@ -24,7 +24,7 @@ function displayUserName() {
             var userName = userDoc.data().name;
             var userRole = userDoc.data().user_role;
 
-            $('#title_message').html(`Welcome back ${userRole} ${userName}🥳`)
+            $('#title_message').html(`${userRole} ${userName}🥳`)
         })
 }
 
