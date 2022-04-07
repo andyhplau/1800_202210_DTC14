@@ -1,3 +1,14 @@
+firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+        currentUserData = db.collection("users").doc(user.uid); //global
+
+    } else {
+        // No user is signed in.
+        console.log("No user is signed in");
+        window.location.href = "login.html";
+    }
+});
+
 function submit_interest() {
 
     // log data to console

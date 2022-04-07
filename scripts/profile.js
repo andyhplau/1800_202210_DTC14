@@ -1,5 +1,19 @@
 var currentUser
 
+firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+        currentUser = db.collection("users").doc(user.uid); //global
+        userID = user.uid;
+
+        populateInfo();
+        upload_profile_picture();
+    } else {
+        // No user is signed in.
+        console.log("No user is signed in");
+        window.location.href = "login.html";
+    }
+});
+
 function populateInfo() {
     firebase.auth().onAuthStateChanged(user => {
         // Check if user is signed in:
@@ -50,7 +64,6 @@ function populateInfo() {
 }
 
 //call the function to run it 
-populateInfo();
 
 function editUserInfo() {
     document.getElementById("personalInfoFields").disabled = false
@@ -119,5 +132,3 @@ function upload_profile_picture() {
         }
     })
 }
-
-upload_profile_picture();
