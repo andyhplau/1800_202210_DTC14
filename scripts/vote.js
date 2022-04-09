@@ -3,17 +3,17 @@ let i = 1;
 let currentUserData;
 let userID;
 
+// get group ID from URL
 function getGroupID() {
     // create a URL object
     let params = new URL(window.location.href);
     groupID = params.searchParams.get("group_id");
 }
-getGroupID()
 
 //only works when user is logged in
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
-        currentUserData = db.collection("users").doc(user.uid); //global
+        currentUserData = db.collection("users").doc(user.uid);
         userID = user.uid;
 
         readGroupName();
@@ -21,6 +21,7 @@ firebase.auth().onAuthStateChanged(user => {
     } else {
         // No user is signed in.
         console.log("No user is signed in");
+        // direct to login.html
         window.location.href = "../login.html";
     }
 });
@@ -77,6 +78,7 @@ function updateVoteResult(src) {
     let selection = src.value;
     let newNumber = null;
 
+    // get to the correct group document
     db.collection("Group").where("id", "==", groupID)
         .get()
         .then(queryGroup => {
@@ -87,6 +89,7 @@ function updateVoteResult(src) {
             })
 
             let thisGroupSuggestion = Group[0].ref.collection("suggestions")
+            // get to the correct suggestion document
             thisGroupSuggestion.where("suggestion", "==", selection)
                 .get()
                 .then(querySuggestion => {
@@ -97,14 +100,22 @@ function updateVoteResult(src) {
                     console.log('new number:', newNumber)
 
                     suggestionGroup.ref.update({
-                            number: newNumber
-                        }).then(() => {
-                            setTimeout(() => {
-                                console.log("inside timeout");
-                            }, 2000);
-                            alert("Submission Successful");
-                            window.location.assign("../pages/group.html?group_id=" + groupID)
-                        })
+                        number: newNumber
+                    }).then(() => {
+                        setTimeout(() => {
+                            console.log("inside timeout");
+                        }, 2000);
+                        alert("Submission Successful");
+                        window.location.assign("../pages/group.html?group_id=" + groupID)
+                    })
                 })
         })
 }
+
+// call the functions inside
+function setup() {
+    getGroupID();
+}
+
+// call the setup function when page is ready
+$(document).ready(setup);

@@ -1,6 +1,7 @@
 // Initialize the FirebaseUI Widget using Firebase.
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
+// function for sign in/ sign up
 var uiConfig = {
     callbacks: {
         signInSuccessWithAuthResult: function (authResult, redirectUrl) {
@@ -17,6 +18,7 @@ var uiConfig = {
                         email: user.email
                     }).then(function () {
                         console.log("New user added to firestore")
+                        // direct new user to roles.html if successfully signed up
                         window.location.assign("../pages/roles.html")
                     })
                     .catch(function (error) {
@@ -35,15 +37,11 @@ var uiConfig = {
     },
     // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
     signInFlow: 'popup',
+    // direct user to main.html if successfully signed in
     signInSuccessUrl: '../pages/main.html',
     signInOptions: [
-        // Leave the lines as is for the providers you want to offer your users.
-        //   firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        //   firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-        //   firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-        //   firebase.auth.GithubAuthProvider.PROVIDER_ID,
+        // let users sign up/ sign in using email
         firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        //   firebase.auth.PhoneAuthProvider.PROVIDER_ID
     ],
     // Terms of service url.
     tosUrl: '<your-tos-url>',

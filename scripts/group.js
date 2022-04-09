@@ -4,7 +4,7 @@ let userID;
 //only works when user is logged in
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
-        currentUserData = db.collection("users").doc(user.uid); //global
+        currentUserData = db.collection("users").doc(user.uid);
         userID = user.uid;
 
         getGroupID();
@@ -12,6 +12,7 @@ firebase.auth().onAuthStateChanged(user => {
     } else {
         // No user is signed in.
         console.log("No user is signed in");
+        // direct user to login.html
         window.location.href = "../login.html";
     }
 });

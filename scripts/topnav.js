@@ -4,6 +4,6 @@ function go_back() {
 }
 
 // direct to main.html
-function logo_button(){
+function logo_button() {
     window.location.href = "../pages/main.html";
 }

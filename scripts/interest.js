@@ -1,7 +1,7 @@
 // only works when user is logged in
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
-        currentUserData = db.collection("users").doc(user.uid); //global
+        currentUserData = db.collection("users").doc(user.uid);
 
     } else {
         // No user is signed in.
@@ -10,20 +10,21 @@ firebase.auth().onAuthStateChanged(user => {
     }
 });
 
-// collect users' 3 interests
+// collect user's 3 interests
 function submit_interest() {
 
     // log data to console
     console.log("Submit Interest")
+    // get user's 3 interests values
     let first_interest = document.getElementById("interest_1").value
     let second_interest = document.getElementById("interest_2").value
     let third_interest = document.getElementById("interest_3").value
-    console.log(first_interest, second_interest, third_interest)
 
     // write data to Firestore
     firebase.auth().onAuthStateChanged(user => {
+        // get to the user document
         currentUser = db.collection("users").doc(user.uid)
-
+        // update user's interest
         currentUser.update({
                 interest_1: first_interest,
                 interest_2: second_interest,
@@ -32,6 +33,7 @@ function submit_interest() {
             })
             .then(() => {
                 console.log("Interest submitted!")
+                // direct to matched.html
                 window.location.assign("../pages/matched.html")
             })
     })

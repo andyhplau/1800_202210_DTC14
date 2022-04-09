@@ -9,7 +9,7 @@ function home_button() {
 function logout() {
     console.log("logging out user");
     firebase.auth().signOut().then(() => {
-        // Sign-out successful.
+        // direct user to index.html if successfully signed out
         window.location.href = "index.html";
     }).catch((error) => {
         // An error happened.
@@ -22,6 +22,7 @@ function show_profile() {
 
         // check if user is signed in
         if (user) {
+            // hide login button and show logout button if user is signed in
             $('#loginButton').hide()
             $('#logoutButton').show()
             // go to the correct user document by referencing to the user uid
@@ -31,12 +32,13 @@ function show_profile() {
                 .then(userDoc => {
                     var userProfilePictureURL = userDoc.data().profile_picture_URL;
                     console.log(userProfilePictureURL)
-                    // replace user profile picture if the URL is not empty
+                    // replace to the user profile picture if the URL is not empty
                     if (userProfilePictureURL != null) {
                         $("#navProfilePicture").attr("src", userProfilePictureURL);
                     }
                 })
         } else {
+            // show login button and hide logout button if user is not signed in
             $('#loginButton').show()
             $('#logoutButton').hide()
             // No user is signed in.

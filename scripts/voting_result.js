@@ -1,16 +1,18 @@
 let groupID;
+var suggestionList = [];
+var suggestionResult = [];
 
+// get group ID from URL
 function getGroupID() {
     // create a URL object
     let params = new URL(window.location.href);
     groupID = params.searchParams.get("group_id");
 }
-getGroupID()
 
 //only works when user is logged in
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
-        currentUserData = db.collection("users").doc(user.uid); //global
+        currentUserData = db.collection("users").doc(user.uid);
         userID = user.uid;
 
         readGroupName();
@@ -18,12 +20,14 @@ firebase.auth().onAuthStateChanged(user => {
     } else {
         // No user is signed in.
         console.log("No user is signed in");
+        // direct to login.html
         window.location.href = "../login.html";
     }
 });
 
 // display group name in the welcome message
 function readGroupName() {
+    // get to the correct group document
     db.collection("Group").where("id", "==", groupID)
         .get()
         .then(queryGroup => {
@@ -46,7 +50,6 @@ function readGroupName() {
         });
 }
 
-
 // display result as pie chart
 function drawPie(suggestionList, suggestionResult) {
     var ctxP = document.getElementById("pieChart").getContext('2d');
@@ -66,17 +69,14 @@ function drawPie(suggestionList, suggestionResult) {
     });
 }
 
-
-
-var suggestionList = [];
-var suggestionResult = [];
 // get vote data and store the data in lists
 function getVoteData() {
-
+    // get to the correct group document
     db.collection("Group").where("id", "==", groupID)
         .get()
         .then(queryGroup => {
             let Group = queryGroup.docs;
+            // get to the suggestion collection
             let thisGroupSuggestion = Group[0].ref.collection("suggestions")
             thisGroupSuggestion
                 .get()
@@ -94,3 +94,11 @@ function getVoteData() {
                 })
         })
 }
+
+// call the functions inside
+function setup() {
+    getGroupID();
+}
+
+// call the setup function when page is ready
+$(document).ready(setup);

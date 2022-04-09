@@ -37,16 +37,22 @@
 
     <!-- the body of the page -->
     <div class="justify-content-center g-lg-5 my-5">
-        <p class="h1 text-center">Messages for the</p><p class="h1 text-center" id="groupName"></p>
 
-        <div class="overflow-scroll" style="height: 50%;" id="chatMessageBox"></div>
+        <!-- title of the page -->
+        <p class="h1 text-center">Messages for the</p>
+        <p class="h1 text-center" id="groupName"></p>
 
+        <!-- div holder for messages populating -->
+        <div id="chatMessageBox"></div>
+
+        <!-- message box for inputting message to send -->
         <div class="my-5">
             Message to send:
             <textarea class="form-control" id="chat_message" rows="6"></textarea>
         </div>
         <button class="btn btn-primary" type="submit" id="send_chat">Send</button>
     </div>
+
     <!-- footer-->
     <nav id="footerPlaceholder"></nav>
 

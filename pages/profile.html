@@ -38,13 +38,17 @@
 
     <!-- the body of the page -->
     <div class="container">
+
+        <!-- title of the page -->
         <p class="h1 m-3 d-flex justify-content-center">User Profile </p>
 
         <!-- User profile picture -->
         <img src="../images/profile-icon.png" class="rounded-circle border border-dark border-1 mx-auto d-block"
             id="profilePicture" style="width: 120px;">
 
+        <!-- form for user to update their profile -->
         <form>
+
             <fieldset class="my-4" id="personalInfoFields" disabled>
                 <!-- Name -->
                 <div class="form-group my-3">
@@ -345,7 +349,6 @@
                     </select>
                 </div>
 
-
                 <!-- Language -->
                 <div class="form-group my-3">
                     <label>Language</label>
@@ -496,7 +499,7 @@
                     </select>
                 </div>
 
-                <!-- Place to upload profile picture -->
+                <!-- place for uploading profile picture -->
                 <div class="form-group my-3">
                     <label>Upload your profile picture:</label>
                     <br>
@@ -504,7 +507,7 @@
                 </div>
             </fieldset>
 
-            <!-- Edit and Save buttons -->
+            <!-- edit and save buttons -->
             <div class="d-flex justify-content-end mt-5">
                 <button type="button" class="btn btn-secondary m-2" onclick="editUserInfo()">Edit</button>
                 <button type="button" class="btn btn-primary m-2" onclick="saveUserInfo()">Save</button>

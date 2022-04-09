@@ -1,5 +1,6 @@
 let groupID;
 
+// get the group ID from URL
 function getGroupID() {
     // create a URL object
     let params = new URL(window.location.href);
@@ -7,6 +8,7 @@ function getGroupID() {
     console.log(groupID)
 }
 
+// store new messages to firestore
 function storeChat() {
     firebase.auth().onAuthStateChanged(user => {
         // Check if user is signed in
@@ -19,12 +21,13 @@ function storeChat() {
                     // get the user name
                     var thisUser = userDoc.data().name;
                     var thisUserID = user.uid;
+                    // get the new message from message box
                     var thisMessage = $("#chat_message").val();
                     // get to the correct group using the groupID
                     db.collection("Group").where("id", "==", groupID)
                         .get()
                         .then(group => {
-                            // add the message data to chats collection inside group document
+                            // create a new document in chats collection and store the message
                             group.docs[0].ref.collection("chats").add({
                                 message: thisMessage,
                                 userName: thisUser,
@@ -45,14 +48,15 @@ function storeChat() {
     })
 }
 
+// populate messages from firestore
 function populateChats() {
-    // empty the messages
+    // empty the message box
     $("#chatMessageBox").empty()
     // get to the right group document with the groupID
     db.collection("Group").where("id", "==", groupID)
         .get()
         .then(group => {
-            // get to the chats collection, and sort all chat document by time
+            // get to the chats collection, and sort all chat document with timestamp
             group.docs[0].ref.collection("chats")
                 .orderBy("timestamp")
                 .get()
@@ -78,15 +82,20 @@ function populateChats() {
         })
 }
 
+// populate the group name using groupID
 function getGroupName() {
+    // get to the right group document
     var currentGroup = db.collection("Group").where("id", "==", groupID)
     currentGroup.get()
         .then(group => {
+            // get the group name
             var groupName = group.docs[0].data().name;
+            // assign the group name to the page
             $("#groupName").html(groupName);
         })
 }
 
+// call the functions inside
 function setup() {
     getGroupID();
     getGroupName();
@@ -94,4 +103,5 @@ function setup() {
     $("#send_chat").click(storeChat);
 }
 
+// call the setup function when page is ready
 $(document).ready(setup);

@@ -1,14 +1,11 @@
-
-/* Starting 'suggestion' page */
 .contents {
     text-align: center;
-
 }
 
-#suggested_location{
+#suggested_location {
     height: 40px;
 }
 
-#suggested_input{
+#suggested_input {
     margin-bottom: 140px;
 }

@@ -3,7 +3,7 @@ var currentUser
 //only works when user is logged in
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
-        currentUser = db.collection("users").doc(user.uid); //global
+        currentUser = db.collection("users").doc(user.uid);
         userID = user.uid;
 
         populateInfo();
@@ -15,6 +15,7 @@ firebase.auth().onAuthStateChanged(user => {
     }
 });
 
+// populate user's information
 function populateInfo() {
     firebase.auth().onAuthStateChanged(user => {
         // Check if user is signed in:
@@ -64,14 +65,15 @@ function populateInfo() {
     });
 }
 
-//call the function to run it 
-
+//enable the fields for value change
 function editUserInfo() {
     document.getElementById("personalInfoFields").disabled = false
     document.getElementById("emailInput").disabled = true
 }
 
+// update user's information
 function saveUserInfo() {
+    // get the data from the page
     userName = document.getElementById("nameInput").value;
     userGender = document.getElementById("genderInput").value;
     userRole = document.getElementById("roleInput").value;
@@ -86,7 +88,7 @@ function saveUserInfo() {
             //go to the correct user document by referencing to the user uid
             currentUser = db.collection("users").doc(user.uid)
 
-            // write or update database
+            // update the user document
             currentUser.update({
                     name: userName,
                     gender: userGender,
@@ -97,17 +99,19 @@ function saveUserInfo() {
                 })
                 .then(() => {
                     console.log("Document successfully updated!")
+                    // disable the fields for value change
                     document.getElementById('personalInfoFields').disabled = true
                 })
         }
     })
 }
 
-
+// upload profile picture to firebase storage
 function upload_profile_picture() {
     firebase.auth().onAuthStateChanged(user => {
         // check if user is signed in
         if (user) {
+            // get the picture from user input
             var uploadButton = document.getElementById("uploadButton");
             uploadButton.addEventListener("change", uploadFile => {
                 var file = uploadFile.target.files[0];
@@ -118,10 +122,12 @@ function upload_profile_picture() {
                     uploadStorage.snapshot.ref.getDownloadURL().then((pictureURL) => {
                         console.log('profile picture URL: ', pictureURL);
                         alert("Picture uploaded!")
+                        // get to the user document and update the pictureURL
                         db.collection("users").doc(user.uid).update({
                                 profile_picture_URL: pictureURL
                             })
                             .then(() => {
+                                // assigne the picture
                                 $("#profilePicture").attr("src", pictureURL)
                             })
                     })

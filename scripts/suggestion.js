@@ -3,16 +3,16 @@ let currentUserData;
 let userID;
 let Group;
 
+// get group ID from URL
 function getGroupID() {
     let params = new URL(window.location.href);
     groupID = params.searchParams.get("group_id");
 }
-getGroupID()
 
 //only works when user is logged in
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
-        currentUserData = db.collection("users").doc(user.uid) //global
+        currentUserData = db.collection("users").doc(user.uid)
         userID = user.uid;
         //get the document for current user.
 
@@ -55,13 +55,21 @@ function store_suggestion() {
     let thisGroupSuggestion = Group[0].ref.collection("suggestions")
 
     thisGroupSuggestion.add({
-        groupID: groupID, 
+        groupID: groupID,
         userID: userID,
         suggestion: thisSuggestion,
         number: 0,
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
     }).then(() => {
-            alert("Thank you for your suggest")
-            window.location.href = "../pages/group.html?group_id=" + groupID;
-        })
+        alert("Thank you for your suggest")
+        window.location.href = "../pages/group.html?group_id=" + groupID;
+    })
 }
+
+// call the functions inside
+function setup() {
+    getGroupID();
+}
+
+// call the setup function when page is ready
+$(document).ready(setup);

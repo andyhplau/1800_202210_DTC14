@@ -4,7 +4,7 @@ let userID;
 //only works when user is logged in
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
-        currentUserData = db.collection("users").doc(user.uid); //global
+        currentUserData = db.collection("users").doc(user.uid);
         userID = user.uid;
         console.log(userID)
 
