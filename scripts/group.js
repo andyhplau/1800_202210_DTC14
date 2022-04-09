@@ -4,6 +4,7 @@ let userID;
 //only works when user is logged in
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
+        // get the user document
         currentUserData = db.collection("users").doc(user.uid);
         userID = user.uid;
 
@@ -27,7 +28,7 @@ function go_vote_page() {
     let voting = false;
     console.log(groupID)
     console.log(userID)
-
+    // get the correct group using the groupID by query
     db.collection("Group").where("id", "==", groupID)
         .get()
         .then(groupDoc => {
@@ -66,7 +67,7 @@ function getGroupID() {
 
 // populate group members to group.html
 function populateMembers() {
-    // go to the correct group using groupID
+    // go to the correct group using groupID by query
     db.collection("Group").where("id", "==", groupID)
         .get()
         .then(groupDoc => {

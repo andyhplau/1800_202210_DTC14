@@ -4,6 +4,7 @@ let userID;
 //only works when user is logged in
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
+        // get the user document
         currentUserData = db.collection("users").doc(user.uid);
         userID = user.uid;
         console.log(userID)
@@ -18,9 +19,10 @@ firebase.auth().onAuthStateChanged(user => {
 
 // get user's interest from firestore and store in a list
 function getInterestList() {
+    // get the user document
     currentUserData.get()
         .then(userDoc => {
-            //get the data fields of the user
+            //read the data fields of the user
             interest1 = userDoc.data().interest_1;
             interest2 = userDoc.data().interest_2;
             interest3 = userDoc.data().interest_3;
@@ -35,8 +37,9 @@ function getInterestList() {
 function populateInterestList(interest_list) {
     let suggestionListTemplate = document.getElementById("cardTemplete");
     let suggestionCardGroup = document.getElementById("suggestionCardGroup");
-
+    // loop through each interest
     interest_list.forEach(function (interest) {
+        // get the correct group using the interest and category by query
         db.collection("Group").where("category", "==", interest)
             .get()
             .then(queryGroup => {
@@ -50,6 +53,7 @@ function populateInterestList(interest_list) {
                     numberOfMember = Object.keys(groupMember).length
 
                 let testSuggestionCard = suggestionListTemplate.content.cloneNode(true);
+                // write the data to the page
                 testSuggestionCard.querySelector('.card_group_title').innerHTML = groupTitle;
 
                 testSuggestionCard.querySelector('.card_text').innerHTML = "Current number of member: " + numberOfMember;
@@ -71,7 +75,8 @@ function joining(src) {
         groups: firebase.firestore.FieldValue.arrayUnion(selection)
     })
 
-    // put user_name to selected group document
+    // put user_name to selected group document 
+    // get to the correct group using the group ID and selection by query
     db.collection("Group").where("id", "==", selection)
         .get()
         .then(queryGroup => {

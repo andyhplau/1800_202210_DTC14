@@ -3,6 +3,7 @@ var currentUser
 //only works when user is logged in
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
+        // get to the user document
         currentUser = db.collection("users").doc(user.uid);
         userID = user.uid;
 

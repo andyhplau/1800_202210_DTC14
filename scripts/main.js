@@ -4,6 +4,7 @@ let userID;
 //only works when user is logged in
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
+        // get the user document
         currentUserData = db.collection("users").doc(user.uid);
         userID = user.uid;
         console.log(userID)
@@ -19,6 +20,7 @@ firebase.auth().onAuthStateChanged(user => {
 
 // display username
 function displayUserName() {
+    // get the user document
     currentUserData.get()
         .then(userDoc => {
             //get the data fields of the user
@@ -31,11 +33,13 @@ function displayUserName() {
 
 // populate the group buttons
 function populateGroupButtons() {
+    // get the user document
     currentUserData.get()
         .then(userDoc => {
             var userGroups = userDoc.data().groups;
             // get to the correct group using group ID
             userGroups.forEach(groupID => {
+                // get the correct group using the groupID by query
                 db.collection("Group").where("id", "==", groupID)
                     .get()
                     .then(queryGroup => {

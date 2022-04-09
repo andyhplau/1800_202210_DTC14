@@ -1,6 +1,7 @@
 // only works when user is logged in
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
+        // get the user document
         currentUserData = db.collection("users").doc(user.uid);
 
     } else {
@@ -24,7 +25,7 @@ function submit_interest() {
     firebase.auth().onAuthStateChanged(user => {
         // get to the user document
         currentUser = db.collection("users").doc(user.uid)
-        // update user's interest
+        // update user's interest to user document
         currentUser.update({
                 interest_1: first_interest,
                 interest_2: second_interest,

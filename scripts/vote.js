@@ -13,6 +13,7 @@ function getGroupID() {
 //only works when user is logged in
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
+        // get the user document
         currentUserData = db.collection("users").doc(user.uid);
         userID = user.uid;
 
@@ -28,6 +29,7 @@ firebase.auth().onAuthStateChanged(user => {
 
 // display group name in the welcome message
 function readGroupName() {
+    // get the correct group using the groupID by query
     db.collection("Group").where("id", "==", groupID)
         .get()
         .then(queryGroup => {
@@ -52,6 +54,7 @@ function readGroupName() {
 
 // populate all suggestions as buttons
 function populateVotingList() {
+    // get the correct group using the groupID by query
     db.collection("Group").where("id", "==", groupID)
         .get()
         .then(queryGroup => {
@@ -61,7 +64,8 @@ function populateVotingList() {
                 .get()
                 .then(allSuggestions => {
                     allSuggestions.forEach(doc => {
-                        var suggestionName = doc.data().suggestion; //gets the suggestion field
+                        //gets the suggestion field
+                        var suggestionName = doc.data().suggestion;
 
                         $('#suggestionCardGroup').append(`<input class="list-group-item-check" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios${i}"
                 value="${suggestionName}" onchange="updateVoteResult(this);"> <label class="list-group-item py-3" for="listGroupCheckableRadios${i}"> ${suggestionName} </label>`);
@@ -78,7 +82,7 @@ function updateVoteResult(src) {
     let selection = src.value;
     let newNumber = null;
 
-    // get to the correct group document
+    // get the correct group using the groupID by query
     db.collection("Group").where("id", "==", groupID)
         .get()
         .then(queryGroup => {
@@ -89,7 +93,7 @@ function updateVoteResult(src) {
             })
 
             let thisGroupSuggestion = Group[0].ref.collection("suggestions")
-            // get to the correct suggestion document
+            // get to the correct suggestion document by query
             thisGroupSuggestion.where("suggestion", "==", selection)
                 .get()
                 .then(querySuggestion => {
@@ -99,6 +103,7 @@ function updateVoteResult(src) {
                     newNumber = currentNumber + 1;
                     console.log('new number:', newNumber)
 
+                    // update the suggestion document
                     suggestionGroup.ref.update({
                         number: newNumber
                     }).then(() => {

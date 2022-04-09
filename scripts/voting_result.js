@@ -12,6 +12,7 @@ function getGroupID() {
 //only works when user is logged in
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
+        // get the user document
         currentUserData = db.collection("users").doc(user.uid);
         userID = user.uid;
 
@@ -27,7 +28,7 @@ firebase.auth().onAuthStateChanged(user => {
 
 // display group name in the welcome message
 function readGroupName() {
-    // get to the correct group document
+    // get the correct group using the groupID by query
     db.collection("Group").where("id", "==", groupID)
         .get()
         .then(queryGroup => {

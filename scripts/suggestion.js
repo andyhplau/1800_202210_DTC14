@@ -12,6 +12,7 @@ function getGroupID() {
 //only works when user is logged in
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
+        // get to the user document
         currentUserData = db.collection("users").doc(user.uid)
         userID = user.uid;
         //get the document for current user.
@@ -26,6 +27,7 @@ firebase.auth().onAuthStateChanged(user => {
 
 // Display group name in welcome message
 function readGroupName() {
+    // get the correct group using the groupID by query
     db.collection("Group").where("id", "==", groupID)
         .get()
         .then(queryGroup => {
@@ -51,9 +53,10 @@ function readGroupName() {
 // store user input in the suggestion document
 function store_suggestion() {
     let thisSuggestion = $('#suggested_location').val();
-
+    
+    // Add the data to suggestion collection
     let thisGroupSuggestion = Group[0].ref.collection("suggestions")
-
+    
     thisGroupSuggestion.add({
         groupID: groupID,
         userID: userID,

@@ -23,7 +23,7 @@ function storeChat() {
                     var thisUserID = user.uid;
                     // get the new message from message box
                     var thisMessage = $("#chat_message").val();
-                    // get to the correct group using the groupID
+                    // get the correct group using the groupID by query
                     db.collection("Group").where("id", "==", groupID)
                         .get()
                         .then(group => {
@@ -52,11 +52,11 @@ function storeChat() {
 function populateChats() {
     // empty the message box
     $("#chatMessageBox").empty()
-    // get to the right group document with the groupID
+    // get to the right group document with the groupID by query
     db.collection("Group").where("id", "==", groupID)
         .get()
         .then(group => {
-            // get to the chats collection, and sort all chat document with timestamp
+            // get the chats collection, and sort all chat document with timestamp
             group.docs[0].ref.collection("chats")
                 .orderBy("timestamp")
                 .get()
@@ -84,7 +84,7 @@ function populateChats() {
 
 // populate the group name using groupID
 function getGroupName() {
-    // get to the right group document
+    // get the right group document by query
     var currentGroup = db.collection("Group").where("id", "==", groupID)
     currentGroup.get()
         .then(group => {
