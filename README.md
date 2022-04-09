@@ -107,6 +107,8 @@ VS Code live server file:
     * https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js
     * https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js
     * https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css
+* Chart.js
+    * https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js
 
 ## Resources
 * In-app icons from Feather v4.28.0 (Open Source https://feathericons.com/)
