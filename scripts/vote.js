@@ -7,7 +7,6 @@ function getGroupID() {
     // create a URL object
     let params = new URL(window.location.href);
     groupID = params.searchParams.get("group_id");
-
 }
 getGroupID()
 
@@ -26,6 +25,7 @@ firebase.auth().onAuthStateChanged(user => {
     }
 });
 
+// display group name in the welcome message
 function readGroupName() {
     db.collection("Group").where("id", "==", groupID)
         .get()
@@ -49,7 +49,7 @@ function readGroupName() {
         });
 }
 
-
+// populate all suggestions as buttons
 function populateVotingList() {
     db.collection("Group").where("id", "==", groupID)
         .get()
@@ -72,6 +72,7 @@ function populateVotingList() {
         })
 }
 
+// add 1 to number value inside the matched suggestion document
 function updateVoteResult(src) {
     let selection = src.value;
     let newNumber = null;

@@ -16,7 +16,7 @@ firebase.auth().onAuthStateChanged(user => {
     }
 });
 
-
+// get user's interest from firestore and store in a list
 function getInterestList() {
     currentUserData.get()
         .then(userDoc => {
@@ -31,12 +31,10 @@ function getInterestList() {
         })
 }
 
-
+// populate suggested group based on user's interests and group activities
 function populateInterestList(interest_list) {
     let suggestionListTemplate = document.getElementById("cardTemplete");
     let suggestionCardGroup = document.getElementById("suggestionCardGroup");
-
-    // console.log(interest_list)
 
     interest_list.forEach(function (interest) {
         db.collection("Group").where("category", "==", interest)
@@ -64,7 +62,7 @@ function populateInterestList(interest_list) {
     })
 }
 
-
+// stroed userID in group document, groupID in user document after clicking join button
 function joining(src) {
     let selection = src.id;
 

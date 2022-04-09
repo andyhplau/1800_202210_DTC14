@@ -26,14 +26,7 @@
 
     <!-- Other libraries and styles -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
     <link rel="stylesheet" href="../styles/style.css">
-    <style>
-        .card {
-            margin: 10px;
-        }
-    </style>
-
 </head>
 
 <body>
@@ -43,9 +36,11 @@
     <nav id="topnavbarPlaceholder" class="sticky-top"></nav>
 
     <!-- the body of the page -->
+
+    <!-- Templete for suggestions list -->
     <template id="cardTemplete">
         <div class="col-sm-6">
-            <div class="card">
+            <div class="card" style="margin: 10px;">
                 <div class="card-body">
                     <h4 class="card_group_title"></h4>
                     <p class="card_text"> ... </p>
@@ -55,6 +50,7 @@
         </div>
     </template>
 
+    <!-- Suggested group list -->
     <div class="contents" style="margin: 30px 20px; text-align: center;">
         <h1 id="group_heading">Here are suggestions!</h1>
         <h5>Click 'join' button to join the group!</h5>
@@ -71,9 +67,6 @@
     <script src="../scripts/firebaseAPI_team14.js"></script>
     <script src="../scripts/skeleton.js"></script>
     <script src="../scripts/matched.js"></script>
-    <!-- <script src="./scripts/authentication.js"></script> -->
-    <!-- <script src="./scripts/script.js"></script> -->
-
 </body>
 
 </html>

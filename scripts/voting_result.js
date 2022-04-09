@@ -4,7 +4,6 @@ function getGroupID() {
     // create a URL object
     let params = new URL(window.location.href);
     groupID = params.searchParams.get("group_id");
-
 }
 getGroupID()
 
@@ -23,7 +22,7 @@ firebase.auth().onAuthStateChanged(user => {
     }
 });
 
-
+// display group name in the welcome message
 function readGroupName() {
     db.collection("Group").where("id", "==", groupID)
         .get()
@@ -48,7 +47,7 @@ function readGroupName() {
 }
 
 
-//pie
+// display result as pie chart
 function drawPie(suggestionList, suggestionResult) {
     var ctxP = document.getElementById("pieChart").getContext('2d');
     var myPieChart = new Chart(ctxP, {
@@ -71,7 +70,7 @@ function drawPie(suggestionList, suggestionResult) {
 
 var suggestionList = [];
 var suggestionResult = [];
-// get vote data and store in list
+// get vote data and store the data in lists
 function getVoteData() {
 
     db.collection("Group").where("id", "==", groupID)

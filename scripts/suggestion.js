@@ -4,13 +4,12 @@ let userID;
 let Group;
 
 function getGroupID() {
-    // create a URL object
     let params = new URL(window.location.href);
     groupID = params.searchParams.get("group_id");
-
 }
 getGroupID()
 
+//only works when user is logged in
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
         currentUserData = db.collection("users").doc(user.uid) //global
@@ -25,7 +24,7 @@ firebase.auth().onAuthStateChanged(user => {
     }
 });
 
-
+// Display group name in welcome message
 function readGroupName() {
     db.collection("Group").where("id", "==", groupID)
         .get()
@@ -49,7 +48,7 @@ function readGroupName() {
         });
 }
 
-
+// store user input in the suggestion document
 function store_suggestion() {
     let thisSuggestion = $('#suggested_location').val();
 

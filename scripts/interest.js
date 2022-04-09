@@ -1,3 +1,4 @@
+// only works when user is logged in
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
         currentUserData = db.collection("users").doc(user.uid); //global
@@ -9,6 +10,7 @@ firebase.auth().onAuthStateChanged(user => {
     }
 });
 
+// collect users' 3 interests
 function submit_interest() {
 
     // log data to console
