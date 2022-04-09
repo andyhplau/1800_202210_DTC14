@@ -92,7 +92,7 @@ Firebase hosting files:
 ├── storage.rules
 
 VS Code live server file
-├── .vs.code
+└──  .vs.code
         /settings.json
 ```
 
