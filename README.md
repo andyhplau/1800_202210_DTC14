@@ -106,8 +106,8 @@ VS Code live server file
 * Soohyeun Park - spark308@my.bcit.ca
 
 ## Acknowledgements
-* <a href="https://getbootstrap.com/">Bootstrap</a>
-* <a href="https://firebase.google.com/">Firebase/  Firestore</a>
+* <a href="https://getbootstrap.com">Bootstrap</a>
+* <a href="https://firebase.google.com">Firebase/  Firestore</a>
 * <a href="https://www.freelogodesign.org">Free logo design</a>
-* <a href="https://feathericons.com/)">Feather icons</a> 
-* <a href="https://www.w3schools.com/">W3schools</a>
+* <a href="https://feathericons.com">Feather icons</a> 
+* <a href="https://www.w3schools.com">W3schools</a>
